@@ -2,6 +2,7 @@ var AppRouter = Backbone.Router.extend({
 	    
     routes: {
         "": "home",
+        "list": "productList"
     },
 
     initialize: function () {        
@@ -11,10 +12,14 @@ var AppRouter = Backbone.Router.extend({
 
     home: function(){
     	$('#carouselBlk').html(new HomeView().el);
+    },
+
+    productList: function(){
+        $("#content").html(new ProductListView().el);
     }    
 });
 
-utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView'], function() {
+utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'ProductListView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
