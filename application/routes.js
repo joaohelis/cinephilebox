@@ -2,21 +2,23 @@ var AppRouter = Backbone.Router.extend({
 	    
     routes: {
         "": "home",
-        "list": "productList"        
+        "movies/list": "movieList"        
     },
 
     initialize: function () {        
         $('#header').html(new HeaderView().el);
         $('#footerSection').html(new FooterView().el);
-        $("#sidebar").html(new SidebarView().el);
+        this.sidebar();
+    },    
+
+    movieList: function(){        
+        $('#carouselBlk').html("");
+        $("#content").html(new MovieListView().el);
     },
 
     home: function(){
-    	$('#carouselBlk').html(new HomeView().el);
-    },
-
-    movieList: function(){
-        $("#content").html(new MovieListView().el);
+        this.movieList();
+        $('#carouselBlk').html(new HomeView().el);        
     },
 
     forgetPassView: function(){
