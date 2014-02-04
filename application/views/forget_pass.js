@@ -1,7 +1,7 @@
-window.ProductListView = Backbone.View.extend({
+window.ForgetPassView = Backbone.View.extend({
 
     initialize: function () {
-        console.log('Initializing Produtct List View');    
+        console.log('Initializing Forget Pass View');    
         this.render();
     },
 
