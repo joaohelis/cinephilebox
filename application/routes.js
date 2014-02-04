@@ -3,7 +3,9 @@ var AppRouter = Backbone.Router.extend({
     routes: {
         ""                 : "home",
         "movies/list"      : "movieList",
-        "contact"          : "contact"
+        "contact"          : "contact",
+        "login"            : "login",
+        "forgetpass": "forgetPass"
     },
 
     initialize: function () {        
@@ -22,11 +24,12 @@ var AppRouter = Backbone.Router.extend({
         $('#carouselBlk').html(new HomeView().el);        
     },
 
-    forgetPassView: function(){
+    forgetPass: function(){
         $("#content").html(new ForgetPassView().el);
     },
 
     login: function(){
+        $('#carouselBlk').html("");
         $("#content").html(new LoginView().el);
     },
 
@@ -38,10 +41,6 @@ var AppRouter = Backbone.Router.extend({
         $("#sidebar").html(new SidebarView().el);
     },
 
-    specialOffer: function(){
-        $("#content").html(new SpecialOfferView().el);
-    },
-
     contact: function(){
         $('#carouselBlk').html("");
         $("#content").html(new ContactView().el);
@@ -49,7 +48,7 @@ var AppRouter = Backbone.Router.extend({
 });
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
-                    'LoginView', 'MovieFormView', 'SidebarView', 'SpecialOfferView', 'ContactView'], function() {
+                    'LoginView', 'MovieFormView', 'SidebarView', 'ContactView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
