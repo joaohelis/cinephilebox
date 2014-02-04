@@ -1,8 +1,9 @@
 var AppRouter = Backbone.Router.extend({
 	    
     routes: {
-        "": "home",
-        "movies/list": "movieList"        
+        ""                 : "home",
+        "movies/list"      : "movieList",
+        "contact"          : "contact"
     },
 
     initialize: function () {        
@@ -39,11 +40,16 @@ var AppRouter = Backbone.Router.extend({
 
     specialOffer: function(){
         $("#content").html(new SpecialOfferView().el);
+    },
+
+    contact: function(){
+        $('#carouselBlk').html("");
+        $("#content").html(new ContactView().el);
     }
 });
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
-                    'LoginView', 'MovieFormView', 'SidebarView', 'SpecialOfferView'], function() {
+                    'LoginView', 'MovieFormView', 'SidebarView', 'SpecialOfferView', 'ContactView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
