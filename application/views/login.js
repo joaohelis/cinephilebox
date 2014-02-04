@@ -1,5 +1,5 @@
 window.LoginView = Backbone.View.extend({
-
+    
     initialize: function () {
         console.log('Initializing Login View');    
         this.render();
@@ -9,4 +9,5 @@ window.LoginView = Backbone.View.extend({
         $(this.el).html(this.template());        
         return this;
     }
+     
 });
