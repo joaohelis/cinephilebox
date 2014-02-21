@@ -1,59 +1,73 @@
 ﻿<div class="span9">	
-	<h3> Filme</h3>	
+	<h3 id="legend"></h3>	
 	<div class="well">	
 		<form class="form-horizontal" >				
 			<p><sup>*</sup> Campos obrigatórios</p>
+
+			<!-- status bar -->
+			<div class="status-bar">                                                                
+                <div class="alert alert-success" style="display: none"></div>                                  
+            </div>
+
 			<div class="row-fluid">
 				<div class="span6">
 					<div class="control-group">
 						<label class="control-label" for="title">Título <sup>*</sup></label>
 						<div class="controls">
 						  <input class="input-block-level" type="text" id="title" placeholder="Título" name="title" value="<%= title %>">
+						  <span class="help-inline"></span>
 						</div>
-					 </div>
-					 <div class="control-group">
+					</div>
+					<div class="control-group">
 						<label class="control-label" for="category">Categoria <sup>*</sup></label>
 						<div class="controls">
 						  <input class="input-block-level" type="text" id="category" placeholder="Categoria" name="category" value="<%= category %>">
+						  <span class="help-inline"></span>
 						</div>
-					 </div>
+					</div>
 					<div class="control-group">
-					<label class="control-label" for="birthplace">País de origem <sup>*</sup></label>
-					<div class="controls">
-					  <input type="text" id="birthplace" placeholder="País de origem" name="birthplace" value="<%= birthplace %>">
-					</div>
-			  	</div>	  
-				<div class="control-group">
-					<label class="control-label" for="releaseYear">Ano de lançamento <sup>*</sup></label>
-					<div class="controls">
-					  <input type="text" id="releaseYear" placeholder="Ano de lançamento" name="releaseYear" value="<%= releaseYear %>">
-					</div>
-			  	</div>  	
-			 </div>
-			 <div class="span3">	 	
-		        <div id="coverPicture" class="well" style="overflow:hidden;text-overflow:ellipsis;background-color:white;">
-		            <p class="pull-right"><img id="coverPicture" width="150" height="150" src="img/movies/1.jpg"/></p>
-		            <!--<p>Alterar imagem de capa:<br>
-		            <input id="coverPicture" type="file"></p>-->
-		        </div>        
-		 	</div>
-		</div>
-	  	<div class="control-group">		
-	  		<label class="control-label" for="sinopse">Sinopse <sup>*</sup></label>
-	  		<div class="controls">
-	  			<textarea class="input-block-level" rows="5" id="sinopse" placeholder="Sinopse" name="sinopse" value="<%= sinopse %>"></textarea>
-				<!--cols="100"-->
-	  		</div>		
-		</div>
-	  	<div class="control-group">
-			<label class="control-label" for="stockQuantity">Quantidade <sup>*</sup></label>
-			<div class="controls">
-			  <input type="number" id="stockQuantity" placeholder="Quantidade" name="stockQuantity" value="<%= stockQuantity %>">
+						<label class="control-label" for="birthplace">País de origem <sup>*</sup></label>
+						<div class="controls">
+					  		<input type="text" id="birthplace" placeholder="País de origem" name="birthplace" value="<%= birthplace %>">
+					  		<span class="help-inline"></span>
+						</div>
+			  		</div>	  
+					<div class="control-group">
+						<label class="control-label" for="releaseYear">Ano de lançamento <sup>*</sup></label>
+						<div class="controls">
+					  		<input type="text" id="releaseYear" placeholder="Ano de lançamento" name="releaseYear" value="<%= releaseYear %>">
+					  		<span class="help-inline"></span>
+						</div>
+			  		</div>  	
+				</div>
+				<div class="span3 pull-right">	 	
+			        <div id="coverPicture" class="well" style="overflow:hidden;text-overflow:ellipsis;background-color:white;">
+			            <p class="pull-right"><img id="coverPicture" width="150" height="150" src="img/movies/1.jpg"/></p>
+			            <!--<p>Alterar imagem de capa:<br>
+			            <input id="coverPicture" type="file"></p>-->			            
+			            <input type="text" class="span12" disabled>
+			        </div>
+			 	</div>
 			</div>
-	  	</div>  					
-		<div class="control-group">
-				<div class="controls">					
-					<input class="btn btn-large btn-success" type="submit" value="Enviar" />
+		  	<div class="control-group">		
+		  		<label class="control-label" for="sinopse">Sinopse <sup>*</sup></label>
+		  		<div class="controls">
+		  			<textarea class="input-block-level" rows="5" id="sinopse" placeholder="Sinopse" name="sinopse"><%= sinopse %></textarea>
+		  			<span class="help-inline"></span>
+					<!--cols="100"-->
+		  		</div>		
+			</div>
+		  	<div class="control-group">
+				<label class="control-label" for="stockQuantity">Quantidade <sup>*</sup></label>
+				<div class="controls">
+				  <input type="number" id="stockQuantity" placeholder="Quantidade" name="stockQuantity" value="<%= stockQuantity %>">
+				  <span class="help-inline"></span>
+				</div>				
+		  	</div>  					
+			<div class="control-group">
+				<div class="controls pull-right">										
+					<button id="movie-delete" class="btn delete">Excluir</button>
+					<button id="movie-save" class="btn btn-primary save">Salvar</button>
 				</div>
 			</div>		
 		</form>

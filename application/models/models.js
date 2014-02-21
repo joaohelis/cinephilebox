@@ -25,6 +25,10 @@ window.Movie = Backbone.Model.extend({
         this.validators.sinopse = function (value) {
             return value.length > 0 ? {isValid: true} : {isValid: false, message: "Você precisa inserir a sinopse."};
         };
+
+        this.validators.stockQuantity = function (value) {
+            return value.length > 0 && value > 0? {isValid: true} : {isValid: false, message: "Insira uma quantidade válida."};
+        };
     },
     
     defaults: {

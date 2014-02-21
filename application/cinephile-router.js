@@ -6,7 +6,9 @@ var AppRouter = Backbone.Router.extend({
         "contact"          : "contact",
         "login"            : "login",
         "forgetpass"       : "forgetPass",
-        "movie/new"        : "addMovie"
+        "movies/new"       : "addMovie",        
+        "movies/edit/:id"  : "editMovie",
+        "movies/:id"        : "movieDetails",
     },
 
     initialize: function () {        
@@ -18,10 +20,17 @@ var AppRouter = Backbone.Router.extend({
     addMovie: function() {
         var movie = new Movie();
         $('#content').html(new MovieView({model: movie}).el);
-        //$("#legend").html("<div class='well'><h1>Cadastre-se</h1></div>");
-        //$("#user-save").html("Cadastre-se");
-        //$("#user-delete").remove();
-        //this.headerView.selectMenuItem('add-menu');
+        $("#legend").text("Adicionar Filme");
+        $("#movie-save").text("Adicionar Filme");
+        $("#movie-delete").remove();                
+    },
+
+    editMovie: function (id) {      
+        console.log(id.toString());  
+        var movie = movieList.get(id.toString());
+        $("#content").html(new MovieView({model: movie}).el);
+        $("#legend").text("Editar Filme");
+        $("#movie-save").text("Salvar alterações");        
     },
 
     movieList: function(){        
@@ -57,12 +66,9 @@ var AppRouter = Backbone.Router.extend({
     }
 });
 
-/*
-// Bootstrap the application
-window.db = window.openDatabase("CinephileDB", "1.0", "Cinephile Demo DB", 200000);
-var movieDAO = new MovieDAO(db);
+var movieList = new MovieCollection()
+var categoryList = new CategoryCollection()
 
-*/
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView'], function() {
     app = new AppRouter();
