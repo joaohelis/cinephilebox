@@ -19,3 +19,16 @@ window.HeaderView = Backbone.View.extend({
     }
 
 });
+
+window.HeaderAdminView = Backbone.View.extend({
+
+    initialize: function () {
+        console.log('Initializing Header Admin View');    
+        this.render();
+    },
+
+    render: function () {
+        $(this.el).html(this.template());        
+        return this;
+    },
+});

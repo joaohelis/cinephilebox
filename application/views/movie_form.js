@@ -54,7 +54,8 @@ window.MovieView = Backbone.View.extend({
         if (this.model.isNew()){
             movieList.create(this.model);
             alert('Filme cadastrado com sucesso!');
-            window.location.replace('#movies/edit/'+this.model.id);            
+            window.location.replace('#movies/edit/'+this.model.id);      
+            //app.navigate('#movies/edit/'+this.model.id);
             //utils.showAlert('Sucesso!', 'Filme cadastrado com sucesso.', 'alert-success');
         } else {        	
             this.model.save();

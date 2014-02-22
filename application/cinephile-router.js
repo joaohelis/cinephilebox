@@ -1,21 +1,45 @@
 var AppRouter = Backbone.Router.extend({
 	    
     routes: {
+        //'^([^\/]*)/.*$'    : "defaultRoute",
         ""                 : "home",
         "movies/list"      : "movieList",
         "contact"          : "contact",
         "login"            : "login",
         "forgetpass"       : "forgetPass",
-        "movies/new"       : "addMovie",        
-        "movies/edit/:id"  : "editMovie",
-        "movies/:id"        : "movieDetails",
+        "admin"            : "homeAdmin",
+        "admin/movies/new"       : "addMovie",        
+        "admin/movies/edit/:id"  : "editMovie",
+        "admin/movies/:id"       : "movieDetails"
+    },    
+
+    initialize: function () {                        
+        $('#footerSection').html(new FooterView().el);
+        utils.startsWithMethodConfigure();
+        this.headerAdmin();        
+        this.sidebarAdmin();        
+        //this.defaultRoute();
     },
 
-    initialize: function () {        
+    defaultRoute: function(){
+        var currentRoute = new String(Backbone.history.valueOf().fragment).toString();        
+        if(currentRoute.startsWith("admin")){
+            alert("Entrei aqui");
+            this.sidebarAdmin();
+            this.headerAdmin();
+        }else{            
+            this.sidebar();
+            this.header();
+        }        
+    },
+
+    header: function(){
         $('#header').html(new HeaderView().el);
-        $('#footerSection').html(new FooterView().el);
-        this.sidebar();
-    },    
+    },
+
+    headerAdmin: function(){
+        $('#header').html(new HeaderAdminView().el);
+    },
 
     addMovie: function() {
         var movie = new Movie();
@@ -25,12 +49,11 @@ var AppRouter = Backbone.Router.extend({
         $("#movie-delete").remove();                
     },
 
-    editMovie: function (id) {      
-        console.log(id.toString());  
+    editMovie: function (id) {              
         var movie = movieList.get(id.toString());
         $("#content").html(new MovieView({model: movie}).el);
         $("#legend").text("Editar Filme");
-        $("#movie-save").text("Salvar alterações");        
+        $("#movie-save").text("Salvar alterações");
     },
 
     movieList: function(){        
@@ -38,9 +61,14 @@ var AppRouter = Backbone.Router.extend({
         $("#content").html(new MovieListView().el);
     },
 
-    home: function(){
-        this.movieList();
-        $('#carouselBlk').html(new HomeView().el);        
+    home: function(){        
+        $('#carouselBlk').html(new HomeView().el);
+    },
+
+    homeAdmin: function(){
+        $('#carouselBlk').html('');
+        $('#content').html('<div class="hero-unit"><h1>Área de administração do Cinephile</h1><p></p></div>');
+        $("#sidebar").html(new SidebarAdminView().el);
     },
 
     forgetPass: function(){
@@ -60,6 +88,10 @@ var AppRouter = Backbone.Router.extend({
         $("#sidebar").html(new SidebarView().el);
     },
 
+    sidebarAdmin: function(){
+        $("#sidebar").html(new SidebarAdminView().el);  
+    },
+
     contact: function(){
         $('#carouselBlk').html("");
         $("#content").html(new ContactView().el);
@@ -70,7 +102,8 @@ var movieList = new MovieCollection()
 var categoryList = new CategoryCollection()
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
-                    'LoginView', 'MovieView', 'SidebarView', 'ContactView'], function() {
+                    'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',
+                    'HeaderAdminView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });

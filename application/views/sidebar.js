@@ -10,3 +10,16 @@ window.SidebarView = Backbone.View.extend({
         return this;
     },
 });
+
+window.SidebarAdminView = Backbone.View.extend({
+
+    initialize: function () {
+        console.log('Initializing Sidebar Admin View');    
+        this.render();
+    },
+
+    render: function () {
+        $(this.el).html(this.template());        
+        return this;
+    },
+});
