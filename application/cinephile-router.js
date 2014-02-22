@@ -10,7 +10,8 @@ var AppRouter = Backbone.Router.extend({
         "admin"            : "homeAdmin",
         "admin/movies/new"       : "addMovie",        
         "admin/movies/edit/:id"  : "editMovie",
-        "admin/movies/:id"       : "movieDetails"
+        "admin/movie/:id"       : "movieDetails",
+        "admin/movies/list"      : "movieListAdmin"
     },    
 
     initialize: function () {                        
@@ -19,7 +20,7 @@ var AppRouter = Backbone.Router.extend({
         this.headerAdmin();        
         this.sidebarAdmin();        
         //this.defaultRoute();
-    },
+    },  
 
     defaultRoute: function(){
         var currentRoute = new String(Backbone.history.valueOf().fragment).toString();        
@@ -54,6 +55,12 @@ var AppRouter = Backbone.Router.extend({
         $("#content").html(new MovieView({model: movie}).el);
         $("#legend").text("Editar Filme");
         $("#movie-save").text("Salvar alterações");
+    },
+
+    movieListAdmin: function() {                                
+        var movieListAdmin = new MovieListAdminView({model:movieList});
+        $("#content").html(movieListAdmin.el);
+        movieListAdmin.tableMount();
     },
 
     movieList: function(){        
