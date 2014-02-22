@@ -63,12 +63,15 @@ window.MovieView = Backbone.View.extend({
     },
     
     deleteMovie:function () {
-        this.model.destroy({
-            success:function () {
-                alert('Filme deletado com sucesso!');
-                window.history.back();
-            }
-        });
+        var self = this;
+        if(confirm("Tem certeza que quer excluir o filme?")){
+            self.model.destroy({
+                success:function () {
+                    alert('Filme deletado com sucesso!');
+                    window.history.back();
+                }
+            })
+        }        
         return false;
     }
 });

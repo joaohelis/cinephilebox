@@ -63,7 +63,7 @@ var AppRouter = Backbone.Router.extend({
     movieListAdmin: function() {                                
         var movieListAdmin = new MovieListAdminView({model:movieList});
         $("#content").html(movieListAdmin.el);
-        movieListAdmin.tableMount();
+        movieListAdmin.tableMount();        
     },
 
     movieList: function(){        

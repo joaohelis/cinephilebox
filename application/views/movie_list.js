@@ -13,58 +13,79 @@ window.MovieListView = Backbone.View.extend({
 
 window.MovieListAdminView = Backbone.View.extend({
 
+	events: {
+        "click #movie-delete": "beforeMovieDelete"        
+    },
 
     initialize: function () {
-        console.log('Initializing Movie List Admin View');            
-
-        $("#movie-list-admin tbody tr").click( function( e ) {
-	        if ( $(this).hasClass('row_selected') ) {
-	            $(this).removeClass('row_selected');
-	        }
-	        else {
-	            oTable.$('tr.row_selected').removeClass('row_selected');
-	            $(this).addClass('row_selected');
-	        }
-	    }),
-     
-	    /* Add a click handler for the delete row */
-	    $('#delete').click( function() {
-	        var anSelected = fnGetSelected( oTable );
-	        if ( anSelected.length !== 0 ) {
-	            oTable.fnDeleteRow( anSelected[0] );
-	        }
-	    })
+        console.log('Initializing Movie List Admin View');                    
         this.render();
-    },
-
-    tableMount: function(){
-    	var aaData = [];
-        var movies = this.model;
-        movies.forEach(function(movie){
-            var movie = movie.toJSON();                        
-            aaData.push([movie.title, movie.category, movie.stockQuantity])
-        });
-        var aoColumns = []
-        aoColumns.push({"sTitle": "Título", "sClass": "center" }); 
-        aoColumns.push({"sTitle": "Categoria", "sClass": "center" }); 
-        aoColumns.push({"sTitle": "Quant.Estoque", "sClass": "center" }); 
-
-        
-        oTable = $('#movie-list-admin').dataTable({            
-            "aaData": aaData,
-            "aoColumns": aoColumns           
-        });
-    },
+        this.oTable;
+    },    
     
     render: function () {
         $(this.el).html('<table id="movie-list-admin" class="display" width="100%">');
         return this;
-    },    
+    },
 
+    tableMount: function(){    	
+    	var aaData = [];
+        var movies = this.model;
+        movies.forEach(function(movie){
+            var movie = movie.toJSON();
+            aaData.push([movie.title, 
+            			movie.category, 
+            			movie.stockQuantity, 
+            			'<a href="#admin/movies/edit/'+movie.id+'" class="btn btn-small btn-primary" title="Editar"><i class="btn-icon-only icon-edit"></i></a>\
+            			 <a id="movie-delete" movie-id="'+movie.id+'" class="btn btn-small" title="Remover"><i class="btn-icon-only icon-remove"></i></a>'                                                                                                  
+            			])
+        });
+        var aoColumns = []                
+        aoColumns.push({"sTitle": "Título", "sClass": "center"}); 
+        aoColumns.push({"sTitle": "Categoria", "sClass": "center"}); 
+        aoColumns.push({"sTitle": "Quant.Estoque", "sClass": "center"}); 
+        aoColumns.push({"sTitle": "Ações", "sClass": "center"}); 
+
+        
+        this.oTable = $('#movie-list-admin').dataTable({            
+            "aaData": aaData,
+            "aoColumns": aoColumns           
+        });
+    },
+
+    beforeMovieDelete: function(events){
+    	var movieTableRow = events.currentTarget.parentNode.parentNode;
+    	var movie = this.model.get($(events.currentTarget).attr("movie-id"));    	 
+    	$(movieTableRow).addClass('row_selected');
+		this.movieDelete(movie);		
+		/*$(this).hasClass('row_selected')
+    	 if ( $(this).hasClass('row_selected') ) {
+            $(this).removeClass('row_selected');
+        }
+        else {
+            oTable.$('tr.row_selected').removeClass('row_selected');
+            $(this).addClass('row_selected');
+        }*/
+    },
 
     /* Get the rows which are currently selected */
-	fnGetSelected: function(oTableLocal)
-	{
-	    return oTableLocal.$('tr.row_selected');
-	}
+	fnGetSelected: function(oTableLocal){
+    	return oTableLocal.$('tr.row_selected');
+	},
+
+    movieDelete: function(movie) {    
+    	var self = this;    
+        if(confirm("Tem certeza que quer excluir o filme?")){
+            movie.destroy({
+                success:function () {                	
+                    alert('Filme deletado com sucesso!');
+                    var anSelected = self.fnGetSelected(self.oTable);
+			        if (anSelected.length !== 0) {
+			            self.oTable.fnDeleteRow(anSelected[0]);
+			        }                    
+                }
+            })
+        }        
+        return false;
+    }
 });
