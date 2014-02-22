@@ -11,7 +11,8 @@ var AppRouter = Backbone.Router.extend({
         "admin/movies/new"       : "addMovie",        
         "admin/movies/edit/:id"  : "editMovie",
         "admin/movies/:id"       : "movieDetails",
-        "admin/categories/new"   : 'addCategory'
+        "admin/categories/new"   : "addCategory",
+        "admin/categories"       : "listCategorys"
     },    
 
     initialize: function () {                        
@@ -101,6 +102,11 @@ var AppRouter = Backbone.Router.extend({
     addCategory: function(){
         var c = new Category();
         $('#content').html(new CategoryFormView({model: c}).el);
+        $("#legend").text("Criar categoria");
+    },
+
+    listCategorys: function(){
+        $('#content').html(new CategoryListView().el);
     }
 
 });
@@ -110,7 +116,7 @@ var categoryList = new CategoryCollection()
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',
-                    'HeaderAdminView', 'CategoryFormView'], function() {
+                    'HeaderAdminView', 'CategoryFormView', 'CategoryListView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
