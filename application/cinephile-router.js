@@ -11,7 +11,7 @@ var AppRouter = Backbone.Router.extend({
         "admin/movies/new"       : "addMovie",        
         "admin/movies/edit/:id"  : "editMovie",
         "admin/movie/:id"        : "movieDetails",
-        "admin/movies/list"      : "movieListAdmin"
+        "admin/movies/list"      : "movieListAdmin",
         "admin/categories/new"   : "addCategory",
         "admin/categories"       : "listCategorys"
     },    
@@ -20,7 +20,8 @@ var AppRouter = Backbone.Router.extend({
         $('#footerSection').html(new FooterView().el);
         utils.startsWithMethodConfigure();
         this.headerAdmin();        
-        this.sidebarAdmin();        
+        this.sidebarAdmin();  
+        utils.collectionPopulate(movieList);
         //this.defaultRoute();
     },  
 
