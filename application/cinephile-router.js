@@ -93,7 +93,8 @@ var AppRouter = Backbone.Router.extend({
 
     login: function(){
         $('#carouselBlk').html("");
-        $("#content").html(new LoginView().el);
+        var user = new User();
+        $("#content").html(new LoginView({ model: user }).el);
     },
 
     movieForm: function(){
@@ -161,7 +162,7 @@ var categoryList = new CategoryCollection()
 var userList = new UserCollection()
 
 var appUser = new User();
-appUser.set({admin: false, isLogged: false});
+appUser.set({ isLogged: false });
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',
