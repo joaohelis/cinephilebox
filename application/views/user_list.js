@@ -36,7 +36,17 @@ window.UserListView = Backbone.View.extend({
         
         this.oTable = $('#user-list').dataTable({            
             "aaData": aaData,
-            "aoColumns": aoColumns           
+            "aoColumns": aoColumns,
+            "oLanguage": {
+                "oPaginate": {
+                    "sPrevious": "Anterior",
+                    "sNext": "Próximo",
+                    "sEmptyTable": "Nenhum usário cadastrado!",
+                    "sFirst": "Primeira página",
+                    "sLast": "Última página",
+                    "sSearch": "Buscar:"
+                }
+            }              
         });
     },
 

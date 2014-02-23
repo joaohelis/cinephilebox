@@ -49,7 +49,18 @@ window.MovieListAdminView = Backbone.View.extend({
         
         this.oTable = $('#movie-list-admin').dataTable({            
             "aaData": aaData,
-            "aoColumns": aoColumns           
+            "aoColumns": aoColumns,
+            "oLanguage": {
+                "oPaginate": {
+                    "sPrevious": "Anterior",
+                    "sNext": "Próximo",
+                    "sEmptyTable": "Nenhum filme cadastrado!",
+                    "sFirst": "Primeira página",
+                    "sLast": "Última página",
+                    "sSearch": "Buscar:"
+
+                }
+            }           
         });
     },
 

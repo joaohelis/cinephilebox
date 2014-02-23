@@ -1,6 +1,7 @@
 window.UserView = Backbone.View.extend({
 
     initialize: function () {
+        this.currentPassword = this.model.attributes.password;
         console.log('Initializing User View');    
         this.render();
     },
@@ -15,8 +16,9 @@ window.UserView = Backbone.View.extend({
         "change"                  : "change",
         "click .save"             : "beforeSave",
         "click .delete"           : "deleteUser",
-        "keyup #password"         : "chagePassword"        
-    },    
+        "keyup #password"         : "chagePassword",
+        "change #passwordConfirmation" : "checkPasswordConfirmation"
+    },
 
     change: function (event) {
         // Remove any existing alert message
@@ -37,11 +39,11 @@ window.UserView = Backbone.View.extend({
         } else {
             utils.removeValidationError(target.id);
         }        
-    },
+    },    
 
-    chagePassword: function(event){                
+    chagePassword: function(event){
         var target = event.target;
-        var passwordCheck = utils.validateItem(target.id, new User({password:target.value}));        
+        var passwordCheck = utils.validateItem(target.id, new User({password:target.value}));
         if(passwordCheck.isValid)
             $("#password-confirmation-control-group").show();
         else{
@@ -49,21 +51,23 @@ window.UserView = Backbone.View.extend({
             utils.removeValidationError("passwordConfirmation");
             $("#password-confirmation-control-group").hide();        
         }
-    },    
+    },   
 
     beforeSave: function () {                
-        var check = utils.validateAll(this.model);        
-        var checkPasswordConfirmation = $("#passwordConfirmation").val() == $("#password").val();        
-        if(!checkPasswordConfirmation){
-            if(check.isValid)
-                check.messages = {}            
-            check.isValid = false;          
-            check.messages.passwordConfirmation = "Confirmação de senha inválida.";            
+        var check = utils.validateAll(this.model);            
+        var checkPasswordConfirmation = $("#passwordConfirmation").val() == $("#password").val();
+        if((this.model.isNew() && !checkPasswordConfirmation) || 
+            (!this.model.isNew() && $("#password").val() != this.currentPassword && !checkPasswordConfirmation)){
+                if(check.isValid)
+                    check.messages = {}            
+                check.isValid = false;          
+                check.messages.passwordConfirmation = "Confirmação de senha inválida.";
         }
         if (check.isValid === false){            
             utils.displayValidationErrors(check.messages);
             return false;
-        }
+        }        
+        this.currentPassword = this.model.attributes.password;
         this.saveUser();
         return false;                
     },
@@ -80,7 +84,17 @@ window.UserView = Backbone.View.extend({
         return false;
     },
 
-    deleteUser: function() {                    
-        confirm("Tem certeza que quer excluir o usuário '"+user.attributes.name.toUpperCase()+"'?");
+    deleteUser:function () {
+        var self = this;
+        console.log(self.model);
+        if(confirm("Tem certeza que quer excluir o usuário '"+self.model.attributes.name+"'?")){
+            self.model.destroy({
+                success:function () {
+                    alert('Usuário deletado com sucesso!');
+                    window.history.back();
+                }
+            })
+        }        
+        return false;
     }
 });

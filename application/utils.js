@@ -126,7 +126,7 @@ window.utils = {
                         name: "Rodrigor Vilar",
                         email: "rodrigo.vilar@dce.ufpb.br",
                         password: "1234",
-                        userType: "client"
+                        userType: "Cliente"
                     }]
         users.forEach(function(user){
             collection.create(user);

@@ -11,14 +11,14 @@
 			<div class="control-group">
 				<label class="control-label" for="name">Nome <sup>*</sup></label>
 				<div class="controls">
-				  <input class="input-xlarge" type="text" id="name" placeholder="Nome" name="name" value="<%= name %>">
+				  <input class="input-xxlarge" type="text" id="name" placeholder="Nome" name="name" value="<%= name %>">
 				  <span class="help-inline"></span>
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="email">E-mail <sup>*</sup></label>
 				<div class="controls">
-				  <input class="input-xlarge" type="text" id="email" placeholder="E-mail" name="email" value="<%= email %>">
+				  <input class="input-xxlarge" type="text" id="email" placeholder="E-mail" name="email" value="<%= email %>">
 				  <span class="help-inline"></span>
 				</div>
 			</div>			
@@ -32,14 +32,14 @@
 	  		<div style="display:none;" id="password-confirmation-control-group" class="control-group">
 				<label class="control-label" for="passwordConfirmation">Confirme sua senha <sup>*</sup></label>
 				<div class="controls">
-			  		<input class="input-xlarge" type="password" id="passwordConfirmation" placeholder="Confirme sua senha" name="passwordConfirmation">
+			  		<input type="password" id="passwordConfirmation" placeholder="Confirme sua senha" name="passwordConfirmation">
 			  		<span class="help-inline"></span>
 				</div>
 	  		</div>
 	  		<div class="control-group">
 				<label class="control-label" for="userType">Tipo do usuário <sup>*</sup></label>
 				<div class="controls">				  
-				  <select class="input-xlarge" id="userType" name="userType" value="<%= userType %>">
+				  <select  id="userType" name="userType" value="<%= userType %>">
                         <option name="Cliente"
                         <%= userType == 1?'selected':'' %>>Cliente</option>
                         <option name="Administrador"
