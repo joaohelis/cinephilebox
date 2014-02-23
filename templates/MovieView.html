@@ -20,8 +20,8 @@
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="category">Categoria <sup>*</sup></label>
-						<div class="controls">
-						  <input class="input-block-level" type="text" id="category" placeholder="Categoria" name="category" value="<%= category %>">
+						<div id="category_list" class="controls">
+						  
 						  <span class="help-inline"></span>
 						</div>
 					</div>
@@ -40,14 +40,21 @@
 						</div>
 			  		</div>  	
 				</div>
-				<div class="span3 pull-right">	 	
-			        <div id="coverPicture" class="well" style="overflow:hidden;text-overflow:ellipsis;background-color:white;">
-			            <p class="pull-right"><img id="coverPicture" width="150" height="150" src="img/movies/1.jpg"/></p>
-			            <!--<p>Alterar imagem de capa:<br>
-			            <input id="coverPicture" type="file"></p>-->			            
-			            <input type="text" class="span12" disabled>
-			        </div>
-			 	</div>
+				<style type="text/css">  
+			        .upload-wrapper {cursor:pointer; display:inline-block; position:relative;overflow:hidden;}
+					.upload-file {cursor:pointer; position:absolute; filter:alpha(opacity=100); -moz-opacity:0.01; opacity:0.01; font-size:150px;}
+					.upload-button {cursor:pointer; height:150px; width:150px; }
+		        </style> 
+		        
+				<div id="div-cover-picture" class="span3 pull-right">
+                    <div id="cover-picture-well"class="well" style="background-color:white;">                                              
+                        <span class="upload-wrapper">
+							<input id="coverPicture" class="upload-file" type="file"/>
+							<img id="viewCoverPicture" width="150" height="150" class="upload-button" alt="title=" src="<%= coverPicture %>" />
+						</span>                                                
+						<p>Click na imagem para altera-la</p>
+                    </div>
+                </div>
 			</div>
 		  	<div class="control-group">		
 		  		<label class="control-label" for="sinopse">Sinopse <sup>*</sup></label>

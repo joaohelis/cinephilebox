@@ -7,13 +7,21 @@ window.MovieView = Backbone.View.extend({
 
     render: function () {
         $(this.el).html(this.template(this.model.toJSON()));
+        var category_list = '<select  id="category" name="category" value="<%= category %>">';
+        categoryList.each(function(category){
+            category_list += "<option name='"+category.attributes.name+"' <%= category == 1?'selected':'' %>"+category.attributes.name+"</option>"
+        });
+        category_list += '</select>';        
+        $("#category_list", this.el).html(category_list);
+        $('#category option[name="'+this.model.attributes.category+'"]', this.$el).attr({selected : "selected" });
         return this;
     },
 
     events: {
         "change"                  : "change",
         "click .save"             : "beforeSave",
-        "click .delete"           : "deleteMovie",                
+        "click .delete"           : "deleteMovie",  
+        "change  #coverPicture"   : "coverPictureUpload"              
     },    
 
     change: function (event) {
@@ -40,12 +48,14 @@ window.MovieView = Backbone.View.extend({
         if (check.isValid === false){            
             utils.displayValidationErrors(check.messages);
             return false;
+        }        
+        if(this.pictureFile) {               
+            var reverse = function(str){return str.split("").reverse().join("")};                        
+            var fileExtension = reverse(reverse(this.pictureFile.name).substring(0, reverse(this.pictureFile.name).indexOf(".")));
+            var fileName = this.pictureFile.uuid+"."+fileExtension;
+            this.model.set("coverPicture", "../img/coverPictures/"+fileName);
+            utils.uploadFile(this.pictureFile, fileName, null);
         }
-        /*
-        if (this.pictureFile) {            
-            this.model.set("profilePicture", "../img/profilePictures/"+this.pictureFile.name);            
-            utils.uploadFile(this.pictureFile, null);
-        }*/
         this.saveMovie();
         return false;                
     },
@@ -73,5 +83,23 @@ window.MovieView = Backbone.View.extend({
             })
         }        
         return false;
-    }
+    },
+
+    coverPictureUpload: function (event){                                  
+        var files = event.target.files; // FileList object
+        //render image files as thumbnails.        
+        this.pictureFile = files[0];
+        if(!this.pictureFile.type.match('image.*')){
+            alert('Escolha um arquivo de imagem');
+            return false;
+        }
+        var reader = new FileReader();
+        // Closure to capture the file information.
+        reader.onloadend = function (){
+            $('#viewCoverPicture').attr('src', reader.result).width(150).height(150);                         
+        };                
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(this.pictureFile);
+        this.pictureFile.uuid = utils.generateUUID();
+    }    
 });

@@ -34,12 +34,12 @@ window.Movie = Backbone.Model.extend({
     defaults: {
         id: null,
         title: "",        
-        category: "",
+        category: "Ação",
         birthplace: "",    
         releaseYear: "",
         sinopse: "",
         stockQuantity: 0,
-        coverPicture: "../img/coverPictures/defaultPicture.jpg"
+        coverPicture: "../img/coverPictures/default.jpg"
     }    
 });
 

@@ -58,7 +58,6 @@ window.MovieListAdminView = Backbone.View.extend({
                     "sFirst": "Primeira página",
                     "sLast": "Última página",
                     "sSearch": "Buscar:"
-
                 }
             }           
         });

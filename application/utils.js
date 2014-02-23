@@ -18,10 +18,11 @@ window.utils = {
         $.when.apply(null, deferreds).done(callback);
     },
 
-    uploadFile: function (file, callbackSuccess) {
+    uploadFile: function (file, fileName, callbackSuccess) {
         var self = this;
         var data = new FormData();
-        data.append('file', file);
+        data.append('fileName', fileName);
+        data.append('file', file);        
         $.ajax({
             url: 'api/upload.php',
             type: 'POST',
@@ -32,7 +33,7 @@ window.utils = {
         })
         .done(function () {
             console.log("Upload de "+file.name + " realizado com sucesso.");
-            callbackSuccess();
+            //callbackSuccess();
         })
         .fail(function () {
             self.showAlert('Erro!', 'Um erro ocorreu enquanto fazia upload do arquivo ' + file.name, 'alert-error');
@@ -261,7 +262,15 @@ window.utils = {
             isLogged: false,
             email: ""
         });
+    },
+
+    generateUUID: function(){
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = (d + Math.random()*16)%16 | 0;
+            d = Math.floor(d/16);
+            return (c=='x' ? r : (r&0x7|0x8)).toString(16);
+        });
+        return uuid;
     }
-
-
 };
