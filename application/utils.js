@@ -194,26 +194,31 @@ window.utils = {
         });
     },
 
-        categorysPopulate: function(collection){
-            var categorys= [{    
-                            name: "Ação",   
-                        },
-                        {
-                            name: "Aventura",   
-                        },
-                        {
-                            name: "Ficção",   
-                        },
-                        {
-                            name: "Romance",   
-                        },
-                        {
-                            name: "Policial",   
-                        }
-            ]
-            categorys.forEach(function(category){
-                collection.create(category);
-            });
+    categorysPopulate: function(collection){
+        var categorys= [{    
+                        name: "Ação", 
+                        qtde_movies: '123'  
+                    },
+                    {
+                        name: "Aventura", 
+                        qtde_movies: '173'  
+                    },
+                    {
+                        name: "Ficção", 
+                        qtde_movies: '97'   
+                    },
+                    {
+                        name: "Romance", 
+                        qtde_movies: '86'
+                    },
+                    {
+                        name: "Policial", 
+                        qtde_movies: '211'
+                    }
+        ]
+        categorys.forEach(function(category){
+            collection.create(category);
+        });
     }
-};
 
+};

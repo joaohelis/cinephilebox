@@ -31,6 +31,9 @@ window.CategoryFormView = Backbone.View.extend({
 
     saveCategory:function (){        
         if (this.model.isNew()){
+            // hard coded - just front-end project
+            this.model.set({qtde_movies: '0'});
+            // --------
             categoryList.create(this.model);
             alert('Categoria criada com sucesso!');
             window.location.replace('#admin/categories');

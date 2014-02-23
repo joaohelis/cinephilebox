@@ -1,13 +1,13 @@
 window.CategoryListView = Backbone.View.extend({
 
     initialize: function () {
-        console.log('Initializing Category List View');    
+        console.log('Initializing Category List View');  
         this.render();
     },
 
     render: function () {
         $(this.el).html(this.template());
-        return this;
+        //return this;
     },
 
     renderTable: function(){
@@ -17,8 +17,6 @@ window.CategoryListView = Backbone.View.extend({
         if(length > 0){
             for (var i = 0; i < length; i++) {
                 $("#table-category-content").append(new CategoryItemListView({model:categorys[i]}).el);
-                //element = categorys[i].toJSON();
-                //$("#table-category-content").append("<tr><td>"+element.name+"</td><td>123</td><td class='td-actions'><a href='javascript:;' class='btn btn-small btn-primary' title='Editar'><i class='btn-icon-only icon-edit'></i></a><a href='javascript:;' class='btn btn-small' title='Remover'><i class='btn-icon-only icon-remove'></i></a></td></tr>");
             }
         }
     }
@@ -26,6 +24,7 @@ window.CategoryListView = Backbone.View.extend({
 });
 
 window.CategoryItemListView = Backbone.View.extend({
+    tagName: 'tr',
 
     initialize: function(){
         console.log('Initializing Category Item List View');
