@@ -145,11 +145,8 @@ var userList = new UserCollection()
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',
-<<<<<<< HEAD
-                    'HeaderAdminView', 'CategoryFormView', 'CategoryListView','UserView'], function() {
-=======
-                    'HeaderAdminView', 'CategoryFormView', 'CategoryListView','CategoryItemListView'], function() {
->>>>>>> 26ea16af922d9dbb0c59cd2d5f43a9ccef77aac4
+                    'HeaderAdminView', 'CategoryFormView', 'CategoryListView', 'UserView',
+                    'CategoryItemListView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
