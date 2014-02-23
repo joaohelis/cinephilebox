@@ -14,7 +14,8 @@ var AppRouter = Backbone.Router.extend({
         "admin/movies/list"      : "movieListAdmin",
         "admin/categories/new"   : "addCategory",
         "admin/categories"       : "listCategorys",
-        "admin/users/new"        : "addUser"
+        "admin/categories/edit/:category_id" : "editCategory",
+        "admin/users/new"        : "addUser"        
     },    
 
     initialize: function () {                        
@@ -23,6 +24,7 @@ var AppRouter = Backbone.Router.extend({
         this.headerAdmin();        
         this.sidebarAdmin();  
         utils.collectionPopulate(movieList);
+        utils.categorysPopulate(categoryList);
         //this.defaultRoute();
     },  
 
@@ -110,13 +112,23 @@ var AppRouter = Backbone.Router.extend({
 
     addCategory: function(){
         var c = new Category();
+        c.set({action_btn: 'Criar categoria'});
         $('#content').html(new CategoryFormView({model: c}).el);
         $("#legend").text("Criar categoria");
     },
 
     listCategorys: function(){
-        $('#content').html(new CategoryListView().el);
+       var cl = new CategoryListView({model:categoryList});
+       $("#content").html(cl.el);
+       cl.renderTable();
     },
+
+    editCategory: function (category_id) {              
+       var c = categoryList.get(category_id.toString());
+       c.set({action_btn: 'Salvar alterações'});
+       $("#content").html(new CategoryFormView({model: c}).el);
+       $("#legend").text("Editar Categoria");
+   },
 
     addUser: function() {
         var user = new User();        
@@ -124,8 +136,7 @@ var AppRouter = Backbone.Router.extend({
         $("#legend").text("Adicionar Usuário");
         $("#user-save").text("Adicionar Usuário");
         $("#user-delete").remove();                
-    },
-
+    }
 });
 
 var movieList = new MovieCollection()
@@ -134,7 +145,11 @@ var userList = new UserCollection()
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',
+<<<<<<< HEAD
                     'HeaderAdminView', 'CategoryFormView', 'CategoryListView','UserView'], function() {
+=======
+                    'HeaderAdminView', 'CategoryFormView', 'CategoryListView','CategoryItemListView'], function() {
+>>>>>>> 26ea16af922d9dbb0c59cd2d5f43a9ccef77aac4
     app = new AppRouter();
     Backbone.history.start();
 });

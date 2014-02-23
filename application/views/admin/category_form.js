@@ -33,7 +33,7 @@ window.CategoryFormView = Backbone.View.extend({
         if (this.model.isNew()){
             categoryList.create(this.model);
             alert('Categoria criada com sucesso!');
-            window.location.replace('#admin');      ;
+            window.location.replace('#admin/categories');
         } else {            
             this.model.save();
             utils.showAlert('Sucesso!', 'Suas alterações foram salvas.', 'alert-success');
