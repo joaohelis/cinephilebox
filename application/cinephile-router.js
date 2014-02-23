@@ -83,7 +83,7 @@ var AppRouter = Backbone.Router.extend({
 
     homeAdmin: function(){
         $('#carouselBlk').html('');
-        $('#content').html('<div class="hero-unit"><h1>Área de administração do Cinephile</h1><p></p></div>');
+        $('#content').html('<div class="hero-unit"><h3>Área de administração do Cinephile</h3><p></p></div>');
         $("#sidebar").html(new SidebarAdminView().el);
     },
 
@@ -159,6 +159,9 @@ var AppRouter = Backbone.Router.extend({
 var movieList = new MovieCollection()
 var categoryList = new CategoryCollection()
 var userList = new UserCollection()
+
+var appUser = new User();
+appUser.set({admin: false, isLogged: false});
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',

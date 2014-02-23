@@ -54,7 +54,14 @@ window.Category = Backbone.Model.extend({
         this.validators = {},
 
         this.validators.name = function (value) {
-            return value.length > 0 ? {isValid: true} : {isValid: false, message: "Você precisa inserir o nome para a categoria."};
+            if (! value.length > 0){
+                return {isValid: false, message: "Você precisa inserir o nome para a categoria."};
+            }
+            var c = categoryList.where({ 'name': value })
+            if (c.length !== 0){
+                return {isValid: false, message: "Esta categoria já existe."};
+            }
+            return {isValid: true};
         };
     },
     
