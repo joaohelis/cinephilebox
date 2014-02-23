@@ -1,5 +1,9 @@
+String.prototype.startsWith = function(str){
+    return (this.match("^"+str)==str)
+};
+
 var AppRouter = Backbone.Router.extend({
-	    
+        
     routes: {
         //'^([^\/]*)/.*$'    : "defaultRoute",
         ""                 : "home",
@@ -26,17 +30,27 @@ var AppRouter = Backbone.Router.extend({
         utils.moviesPopulate(movieList);
         utils.categorysPopulate(categoryList);        
         if(appUser.attributes.isLogged){
-            utils.startsWithMethodConfigure();
-            this.headerAdmin();        
-            this.sidebarAdmin();
+            this.configAdminDash();
         }else{
-            window.location.replace('#');
-            this.header();
-            this.sidebar();
-            this.movieList();
+            this.configLanding();
         }
         //this.defaultRoute();
     },  
+
+    configLanding: function(){
+        if (window.location.hash.startsWith('#admin')){
+            window.location.replace('#');
+        }
+        this.header();
+        this.sidebar();
+        this.movieList();
+    },
+
+    configAdminDash:function(){
+        utils.startsWithMethodConfigure();
+        this.headerAdmin();        
+        this.sidebarAdmin();
+    },
 
     defaultRoute: function(){
         var currentRoute = new String(Backbone.history.valueOf().fragment).toString();        
@@ -55,7 +69,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     headerAdmin: function(){
-        $('#header').html(new HeaderAdminView().el);
+        $('#header').html(new HeaderAdminView({ model: appUser }).el);
     },
 
     addMovie: function() {
@@ -84,15 +98,14 @@ var AppRouter = Backbone.Router.extend({
         $("#content").html(new MovieListView().el);
     },
 
-    home: function(){        
+    home: function(){
+        this.configLanding();        
         $('#carouselBlk').html(new HomeView().el);
     },
 
     homeAdmin: function(){
         // before configure
-        utils.startsWithMethodConfigure();
-        this.headerAdmin();        
-        this.sidebarAdmin();
+        this.configAdminDash();
         // ------
         $('#carouselBlk').html('');
         $('#content').html('<div class="hero-unit"><h3>Área de administração do Cinephile</h3><p></p></div>');
@@ -174,7 +187,7 @@ var categoryList = new CategoryCollection()
 var userList = new UserCollection()
 
 var appUser = new User();
-appUser.set({ isLogged: true });
+appUser.set({ isLogged: false });
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',
@@ -183,4 +196,3 @@ utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'Fo
     app = new AppRouter();
     Backbone.history.start();
 });
-

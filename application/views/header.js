@@ -28,7 +28,17 @@ window.HeaderAdminView = Backbone.View.extend({
     },
 
     render: function () {
-        $(this.el).html(this.template());        
+        $(this.el).html(this.template(this.model.toJSON()));        
         return this;
     },
+
+    events:{
+        "click #btn-signout" : "signout"
+    },
+
+    signout:function(){
+        console.log('entrou no signout')
+        utils.destroySession();
+        window.location.replace("#");
+    }
 });
