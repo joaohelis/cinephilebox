@@ -192,6 +192,28 @@ window.utils = {
         movies.forEach(function(movie){
             collection.create(movie);
         });
+    },
+
+        categorysPopulate: function(collection){
+            var categorys= [{    
+                            name: "Ação",   
+                        },
+                        {
+                            name: "Aventura",   
+                        },
+                        {
+                            name: "Ficção",   
+                        },
+                        {
+                            name: "Romance",   
+                        },
+                        {
+                            name: "Policial",   
+                        }
+            ]
+            categorys.forEach(function(category){
+                collection.create(category);
+            });
     }
 };
 
