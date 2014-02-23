@@ -7,6 +7,7 @@ window.UserView = Backbone.View.extend({
 
     render: function () {
         $(this.el).html(this.template(this.model.toJSON()));
+        $('#userType option[name="'+this.model.attributes.userType+'"]', this.$el).attr({selected : "selected" });
         return this;
     },
 
@@ -50,14 +51,15 @@ window.UserView = Backbone.View.extend({
         }
     },    
 
-    beforeSave: function () {        
-        var check = utils.validateAll(this.model);
-        var checkPasswordConfirmation = ($("#passwordConfirmation").val() == $("#password").val());
+    beforeSave: function () {                
+        var check = utils.validateAll(this.model);        
+        var checkPasswordConfirmation = $("#passwordConfirmation").val() == $("#password").val();        
         if(!checkPasswordConfirmation){
-            check.isValid = false;
-            check.messages.passwordConfirmation = "Confirmação de senha inválida.";
+            if(check.isValid)
+                check.messages = {}            
+            check.isValid = false;          
+            check.messages.passwordConfirmation = "Confirmação de senha inválida.";            
         }
-        console.log(check);
         if (check.isValid === false){            
             utils.displayValidationErrors(check.messages);
             return false;
@@ -77,17 +79,8 @@ window.UserView = Backbone.View.extend({
         }
         return false;
     },
-    
-    deleteUser:function () {
-        var self = this;
-        if(confirm("Tem certeza que quer excluir o usuário '"+self.user.name+"'?")){
-            self.model.destroy({
-                success:function () {
-                    alert('Usuário excluído com sucesso!');
-                    window.history.back();
-                }
-            })
-        }        
-        return false;
+
+    deleteUser: function() {                    
+        confirm("Tem certeza que quer excluir o usuário '"+user.attributes.name.toUpperCase()+"'?");
     }
 });

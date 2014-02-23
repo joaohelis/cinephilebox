@@ -57,15 +57,7 @@ window.MovieListAdminView = Backbone.View.extend({
     	var movieTableRow = events.currentTarget.parentNode.parentNode;
     	var movie = this.model.get($(events.currentTarget).attr("movie-id"));    	 
     	$(movieTableRow).addClass('row_selected');
-		this.movieDelete(movie);		
-		/*$(this).hasClass('row_selected')
-    	 if ( $(this).hasClass('row_selected') ) {
-            $(this).removeClass('row_selected');
-        }
-        else {
-            oTable.$('tr.row_selected').removeClass('row_selected');
-            $(this).addClass('row_selected');
-        }*/
+		this.movieDelete(movie);				
     },
 
     /* Get the rows which are currently selected */
@@ -78,7 +70,7 @@ window.MovieListAdminView = Backbone.View.extend({
         if(confirm("Tem certeza que quer excluir o filme?")){
             movie.destroy({
                 success:function () {                	
-                    alert('Filme deletado com sucesso!');
+                    alert('Filme excluído com sucesso!');
                     var anSelected = self.fnGetSelected(self.oTable);
 			        if (anSelected.length !== 0) {
 			            self.oTable.fnDeleteRow(anSelected[0]);

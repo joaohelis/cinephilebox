@@ -15,7 +15,9 @@ var AppRouter = Backbone.Router.extend({
         "admin/categories/new"   : "addCategory",
         "admin/categories"       : "listCategorys",
         "admin/categories/edit/:category_id" : "editCategory",
-        "admin/users/new"        : "addUser"        
+        "admin/users/new"        : "addUser",
+        "admin/users/edit/:id"  : "editUser",
+        "admin/users/list"      : "userListShow"
     },    
 
     initialize: function () {                        
@@ -23,7 +25,8 @@ var AppRouter = Backbone.Router.extend({
         utils.startsWithMethodConfigure();
         this.headerAdmin();        
         this.sidebarAdmin();  
-        utils.collectionPopulate(movieList);
+        utils.usersPopulate(userList);
+        utils.moviesPopulate(movieList);
         utils.categorysPopulate(categoryList);
         //this.defaultRoute();
     },  
@@ -136,7 +139,21 @@ var AppRouter = Backbone.Router.extend({
         $("#legend").text("Adicionar Usuário");
         $("#user-save").text("Adicionar Usuário");
         $("#user-delete").remove();                
-    }
+    },
+
+    editUser: function (id) {              
+        var user = userList.get(id.toString());
+        $("#content").html(new UserView({model:user}).el);
+        $("#legend").text("Editar Usuário");
+        $("#user-save").text("Salvar alterações");
+    },
+
+    userListShow: function() {                                
+        var users = new UserListView({model:userList});
+        $("#content").html(users.el);
+        users.tableMount();        
+    },
+
 });
 
 var movieList = new MovieCollection()

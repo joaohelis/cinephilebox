@@ -91,10 +91,6 @@ window.User = Backbone.Model.extend({
             return returnData;
         },
 
-        this.validators.birthday = function (value) {
-            return value.length > 0 ? {isValid: true} : {isValid: false, message: "Você precisa inserir a data de nascimento."};
-        };
-
         this.validators.password = function (value) {
             return value.length > 3? {isValid: true} : {isValid: false, message: "Você precisa inserir uma senha."};
         };
@@ -108,9 +104,8 @@ window.User = Backbone.Model.extend({
         id: null,
         name: "",
         email: "",
-        birthday: "",
         password: "",
-        userType: "client"
+        userType: "Cliente"
     }    
 });
 

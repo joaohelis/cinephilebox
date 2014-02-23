@@ -105,7 +105,35 @@ window.utils = {
         }
     },
 
-    collectionPopulate: function(collection){
+
+    usersPopulate: function(collection){
+        var users = [{
+                        name: "João Helis Bernardo",
+                        email: "joaohelis.bernardo@dce.ufpb.br",
+                        password: "1234",
+                        userType: "Administrador"
+                    },{
+                        name: "Smith Ascari",
+                        email: "smith.ascari@dce.ufpb.br",
+                        password: "1234",
+                        userType: "Administrador"
+                    },{
+                        name: "Juan Duarte",
+                        email: "juan.duarte@dce.ufpb.br",
+                        password: "1234",
+                        userType: "Cliente"
+                    },{
+                        name: "Rodrigor Vilar",
+                        email: "rodrigo.vilar@dce.ufpb.br",
+                        password: "1234",
+                        userType: "client"
+                    }]
+        users.forEach(function(user){
+            collection.create(user);
+        });
+    },
+
+    moviesPopulate: function(collection){
 
         var movies= [{    
                         title: "Gravidade",   
