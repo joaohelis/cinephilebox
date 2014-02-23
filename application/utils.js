@@ -247,6 +247,21 @@ window.utils = {
         categorys.forEach(function(category){
             collection.create(category);
         });
+    },
+
+    createSession:function(model){
+        appUser.set({
+            isLogged: true,
+            email: model.email
+        });
+    },
+
+    destroySession:function(){
+        appUser.set({
+            isLogged: false,
+            email: ""
+        });
     }
+
 
 };

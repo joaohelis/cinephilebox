@@ -1,53 +1,45 @@
 <div class="span9">
-    <ul class="breadcrumb">
-		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+  <ul class="breadcrumb">
+		<li><a href="#">Home</a> <span class="divider">/</span></li>
 		<li class="active">Login</li>
-    </ul>
+  </ul>
 	<h3> Login</h3>	
 	<hr class="soft"/>
 	
 	<div class="row">
-		<div class="span4">
-			<div class="well">
-			<h5>CRIE SUA CONTA</h5><br/>
-			Informe seu endereço de e-mail para criar uma nova conta.<br/><br/>
-			<form action="register.html">
-			  <div class="control-group">
-				<label class="control-label" for="inputEmail0">Endereço de e-mail</label>
-				<div class="controls">
-				  <input class="span3"  type="text" id="inputEmail0" placeholder="Email">
-				</div>
-			  </div>
-			  <div class="controls">
-			  	<button type="submit" class="btn block">Crie sua conta</button>
-			  </div>
-			</form>
-		</div>
-		</div>
+    <div class="status-bar">
+      <div class="alert alert-success" style="display: none"></div>
+    </div>
 		<div class="span1"> &nbsp;</div>
 		<div class="span4">
+
 			<div class="well">
-			<h5>JÁ ESTÁ REGISTRADO?</h5>
-			<form>
-			  <div class="control-group">
-				<label class="control-label" for="inputEmail1">E-mail</label>
-				<div class="controls">
-				  <input class="span3"  type="text" id="inputEmail1" placeholder="e-mail">
-				</div>
-			  </div>
-			  <div class="control-group">
-				<label class="control-label" for="inputPassword1">Senha</label>
-				<div class="controls">
-				  <input type="password" class="span3"  id="inputPassword1" placeholder="senha">
-				</div>
-			  </div>
-			  <div class="control-group">
-				<div class="controls">
-				  <button type="submit" class="btn">Entrar</button> <a href="#forgetpass">Esqueceu sua senha?</a>
-				</div>
-			  </div>
-			</form>
-		</div>
+        <!-- status bar -->
+  			<!--<form >-->
+  			  <div class="control-group">
+  				  <label class="control-label" for="email">E-mail</label>
+  				  <div class="controls">
+  				    <input class="span3" type="text" name="email" id="email" placeholder="email" value="<%= email %>">
+  				  </div>
+  			  </div>
+
+  			  <div class="control-group">
+  				  <label class="control-label" for="password">Senha</label>
+  				  <div class="controls">
+  				    <input type="password" class="span3" name="password" id="password" placeholder="senha" value="<%= password %>">
+  				  </div>
+  			  </div>
+
+  			  <div class="control-group">
+  				  <div class="controls">
+  				    <button id="btn-login" class="btn btn-success pull-right">Entrar</button> 
+              <!--<a href="#forgetpass">Esqueceu sua senha?</a>-->
+              <br><br>
+  				  </div>
+  			  </div>
+  			<!--</form>-->
+		  </div>
+
 		</div>
 	</div>	
 </div>

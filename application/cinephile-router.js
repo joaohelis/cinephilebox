@@ -22,12 +22,19 @@ var AppRouter = Backbone.Router.extend({
 
     initialize: function () {                        
         $('#footerSection').html(new FooterView().el);
-        utils.startsWithMethodConfigure();
-        this.headerAdmin();        
-        this.sidebarAdmin();  
         utils.usersPopulate(userList);
         utils.moviesPopulate(movieList);
-        utils.categorysPopulate(categoryList);
+        utils.categorysPopulate(categoryList);        
+        if(appUser.attributes.isLogged){
+            utils.startsWithMethodConfigure();
+            this.headerAdmin();        
+            this.sidebarAdmin();
+        }else{
+            window.location.replace('#');
+            this.header();
+            this.sidebar();
+            this.movieList();
+        }
         //this.defaultRoute();
     },  
 
@@ -82,6 +89,11 @@ var AppRouter = Backbone.Router.extend({
     },
 
     homeAdmin: function(){
+        // before configure
+        utils.startsWithMethodConfigure();
+        this.headerAdmin();        
+        this.sidebarAdmin();
+        // ------
         $('#carouselBlk').html('');
         $('#content').html('<div class="hero-unit"><h3>Área de administração do Cinephile</h3><p></p></div>');
         $("#sidebar").html(new SidebarAdminView().el);
@@ -93,7 +105,8 @@ var AppRouter = Backbone.Router.extend({
 
     login: function(){
         $('#carouselBlk').html("");
-        $("#content").html(new LoginView().el);
+        var user = new User();
+        $("#content").html(new LoginView({ model: user }).el);
     },
 
     movieForm: function(){
@@ -161,7 +174,7 @@ var categoryList = new CategoryCollection()
 var userList = new UserCollection()
 
 var appUser = new User();
-appUser.set({admin: false, isLogged: false});
+appUser.set({ isLogged: false });
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',

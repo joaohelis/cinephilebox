@@ -7,7 +7,7 @@ window.CategoryListView = Backbone.View.extend({
 
     render: function () {
         $(this.el).html(this.template());
-        //return this;
+        return this;
     },
 
     renderTable: function(){
