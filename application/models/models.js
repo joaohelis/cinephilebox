@@ -19,15 +19,15 @@ window.Movie = Backbone.Model.extend({
         };
 
         this.validators.releaseYear = function (value) {
-            return value.length > 0 ? {isValid: true} : {isValid: false, message: "Você precisa inserir um ano de lançamento."};
+            return isFinite(value) && value > 0 ? {isValid: true} : {isValid: false, message: "Você precisa inserir um ano de lançamento válido."};
         };
 
         this.validators.sinopse = function (value) {
             return value.length > 0 ? {isValid: true} : {isValid: false, message: "Você precisa inserir a sinopse."};
         };
 
-        this.validators.stockQuantity = function (value) {
-            return value.length > 0 && value > 0? {isValid: true} : {isValid: false, message: "Insira uma quantidade válida."};
+        this.validators.stockQuantity = function (value) {            
+            return isFinite(value) && value > 0? {isValid: true} : {isValid: false, message: "Insira uma quantidade válida."};
         };
     },
     
@@ -67,4 +67,54 @@ window.Category = Backbone.Model.extend({
 window.CategoryCollection = Backbone.Collection.extend({    
     localStorage: new Backbone.LocalStorage("CategoryCollection"),
     model: Category
+});
+
+window.User = Backbone.Model.extend({ 
+
+    initialize: function () {
+        this.validators = {},
+
+        this.validators.name = function (value) {
+            return value.length > 0 ? {isValid: true} : {isValid: false, message: "Você precisa inserir um nome."};
+        };
+
+        this.validators.email = function (value) {                                    
+            var returnData = {isValid: true};
+            if(! value.length > 0)
+                returnData = {isValid: false, message: "Você precisa inserir um e-mail."};
+            else{
+                var atpos = value.indexOf("@");
+                var dotpos = value.lastIndexOf(".");    
+                if(atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= value.length)
+                    returnData = {isValid: false, message: "Insira um e-mail válido."};
+            }
+            return returnData;
+        },
+
+        this.validators.birthday = function (value) {
+            return value.length > 0 ? {isValid: true} : {isValid: false, message: "Você precisa inserir a data de nascimento."};
+        };
+
+        this.validators.password = function (value) {
+            return value.length > 3? {isValid: true} : {isValid: false, message: "Você precisa inserir uma senha."};
+        };
+
+        this.validators.userType = function (value) {
+            return value.length > 0 ? {isValid: true} : {isValid: false, message: "Você precisa inserir o tipo de usuário."};
+        };
+    },
+    
+    defaults: {
+        id: null,
+        name: "",
+        email: "",
+        birthday: "",
+        password: "",
+        userType: "client"
+    }    
+});
+
+window.UserCollection = Backbone.Collection.extend({    
+    localStorage: new Backbone.LocalStorage("UserCollection"),
+    model: User
 });

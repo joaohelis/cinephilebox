@@ -33,7 +33,7 @@ window.MovieListAdminView = Backbone.View.extend({
         var movies = this.model;
         movies.forEach(function(movie){
             var movie = movie.toJSON();
-            aaData.push([movie.title, 
+            aaData.push(['<p class="span3">'+movie.title+'</p>', 
             			movie.category, 
             			movie.stockQuantity, 
             			'<a href="#admin/movies/edit/'+movie.id+'" class="btn btn-small btn-primary" title="Editar"><i class="btn-icon-only icon-edit"></i></a>\
@@ -41,7 +41,7 @@ window.MovieListAdminView = Backbone.View.extend({
             			])
         });
         var aoColumns = []                
-        aoColumns.push({"sTitle": "Título", "sClass": "center"}); 
+        aoColumns.push({"sTitle": "Título"}); 
         aoColumns.push({"sTitle": "Categoria", "sClass": "center"}); 
         aoColumns.push({"sTitle": "Quant.Estoque", "sClass": "center"}); 
         aoColumns.push({"sTitle": "Ações", "sClass": "center"}); 

@@ -13,7 +13,8 @@ var AppRouter = Backbone.Router.extend({
         "admin/movie/:id"        : "movieDetails",
         "admin/movies/list"      : "movieListAdmin",
         "admin/categories/new"   : "addCategory",
-        "admin/categories"       : "listCategorys"
+        "admin/categories"       : "listCategorys",
+        "admin/users/new"        : "addUser"
     },    
 
     initialize: function () {                        
@@ -115,16 +116,25 @@ var AppRouter = Backbone.Router.extend({
 
     listCategorys: function(){
         $('#content').html(new CategoryListView().el);
-    }
+    },
+
+    addUser: function() {
+        var user = new User();        
+        $('#content').html(new UserView({model: user}).el);
+        $("#legend").text("Adicionar Usuário");
+        $("#user-save").text("Adicionar Usuário");
+        $("#user-delete").remove();                
+    },
 
 });
 
 var movieList = new MovieCollection()
 var categoryList = new CategoryCollection()
+var userList = new UserCollection()
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',
-                    'HeaderAdminView', 'CategoryFormView', 'CategoryListView'], function() {
+                    'HeaderAdminView', 'CategoryFormView', 'CategoryListView','UserView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
