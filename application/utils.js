@@ -216,16 +216,7 @@ window.utils = {
                         sinopse: "Em plena era dos dinossauros, quando estes gigantescos seres dominavam a Terra, um pequeno filhote luta para sobreviver em meio às ameaças da natureza. Já crescido, ele é separado dos pais e obrigado a confrontar uma realidade dura em que se luta o tempo todo pela sobrevivência. Não fosse o bastante, terá que lidar com uma rivalidade com o irmão, que é bem mais forte que ele.",
                         stockQuantity: 10,
                         coverPicture: "../img/coverPictures/9.jpg"
-                    },
-                    {
-                        title: "Teste",   
-                        category: "Ação",
-                        birthplace: "Estados Unidos",    
-                        releaseYear: 2012,
-                        sinopse: "Em plena era dos dinossauros, quando estes gigantescos seres dominavam a Terra, um pequeno filhote luta para sobreviver em meio às ameaças da natureza. Já crescido, ele é separado dos pais e obrigado a confrontar uma realidade dura em que se luta o tempo todo pela sobrevivência. Não fosse o bastante, terá que lidar com uma rivalidade com o irmão, que é bem mais forte que ele.",
-                        stockQuantity: 0,
-                        coverPicture: "../img/coverPictures/ef61a3ad-648b-4241-ecb5-c90cf939a136.jpg"
-                    }                    
+                    }             
         ]
         movies.forEach(function(movie){
             collection.create(movie);
