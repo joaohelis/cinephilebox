@@ -21,3 +21,17 @@ input.file {
 	opacity: 0;
 	z-index: 2;
 }
+
+.yellow-light{
+    color: #FAFAD2;
+}
+
+.khaki{
+    color: #F0E68C;
+}
+
+.khaki:hover{
+    color: #F0E68C;
+    cursor: pointer;
+    text-decoration: underline;
+}

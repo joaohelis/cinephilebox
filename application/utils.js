@@ -115,7 +115,7 @@ window.utils = {
                         userType: "Administrador"
                     },{
                         name: "Smith Ascari",
-                        email: "smith.ascari@dce.ufpb.br",
+                        email: "smithascari@gmail.com",
                         password: "1234",
                         userType: "Administrador"
                     },{
