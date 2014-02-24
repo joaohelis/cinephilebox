@@ -65,7 +65,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     header: function(){
-        $('#header').html(new HeaderView().el);
+        $('#header').html(new HeaderView({model:categoryList}).el);
     },
 
     headerAdmin: function(){
@@ -127,8 +127,8 @@ var AppRouter = Backbone.Router.extend({
         $("#content").html(new MovieFormView().el);
     },
 
-    sidebar: function(){
-        $("#sidebar").html(new SidebarView().el);
+    sidebar: function(){        
+        $("#sidebar").html(new SidebarView({model:categoryList}).el);
     },
 
     sidebarAdmin: function(){

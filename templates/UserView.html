@@ -1,59 +1,57 @@
-<div class="span9">	
-	<h3 id="legend"></h3>	
-	<div class="well">	
-		<form class="form-horizontal" >				
-			<p><sup>*</sup> Campos obrigatórios</p>
+<h3 id="legend"></h3>	
+<div class="well">	
+	<form class="form-horizontal" >				
+		<p><sup>*</sup> Campos obrigatórios</p>
 
-			<!-- status bar -->
-			<div class="status-bar">                                                                
-                <div class="alert alert-success" style="display: none"></div>                                  
-            </div>			
-			<div class="control-group">
-				<label class="control-label" for="name">Nome <sup>*</sup></label>
-				<div class="controls">
-				  <input class="input-xxlarge" type="text" id="name" placeholder="Nome" name="name" value="<%= name %>">
-				  <span class="help-inline"></span>
-				</div>
+		<!-- status bar -->
+		<div class="status-bar">                                                                
+            <div class="alert alert-success" style="display: none"></div>                                  
+        </div>			
+		<div class="control-group">
+			<label class="control-label" for="name">Nome <sup>*</sup></label>
+			<div class="controls">
+			  <input class="input-xxlarge" type="text" id="name" placeholder="Nome" name="name" value="<%= name %>">
+			  <span class="help-inline"></span>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="email">E-mail <sup>*</sup></label>
-				<div class="controls">
-				  <input class="input-xxlarge" type="text" id="email" placeholder="E-mail" name="email" value="<%= email %>">
-				  <span class="help-inline"></span>
-				</div>
-			</div>			
-			<div class="control-group">
-				<label class="control-label" for="password">Senha <sup>*</sup></label>
-				<div class="controls">
-			  		<input type="password" id="password" placeholder="Senha com no mínimo 4 dígitos" name="password" value=<%= password %>>
-			  		<span class="help-inline"></span>
-				</div>
-	  		</div>  	
-	  		<div style="display:none;" id="password-confirmation-control-group" class="control-group">
-				<label class="control-label" for="passwordConfirmation">Confirme sua senha <sup>*</sup></label>
-				<div class="controls">
-			  		<input type="password" id="passwordConfirmation" placeholder="Confirme sua senha" name="passwordConfirmation">
-			  		<span class="help-inline"></span>
-				</div>
-	  		</div>
-	  		<div class="control-group">
-				<label class="control-label" for="userType">Tipo do usuário <sup>*</sup></label>
-				<div class="controls">				  
-				  <select  id="userType" name="userType" value="<%= userType %>">
-                        <option name="Cliente"
-                        <%= userType == 1?'selected':'' %>>Cliente</option>
-                        <option name="Administrador"
-                        <%= userType == 2?'selected':'' %>>Administrador</option>                        
-                    </select>
-				  <span class="help-inline"></span>
-				</div>				
-		  	</div>		  	
-			<div class="control-group">
-				<div class="controls">															
-					<button id="user-save" class="btn btn-primary save">Salvar</button>
-					<button id="user-delete" class="btn delete">Excluir Usuário</button>
-				</div>
-			</div>		
-		</form>
-	</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="email">E-mail <sup>*</sup></label>
+			<div class="controls">
+			  <input class="input-xxlarge" type="text" id="email" placeholder="E-mail" name="email" value="<%= email %>">
+			  <span class="help-inline"></span>
+			</div>
+		</div>			
+		<div class="control-group">
+			<label class="control-label" for="password">Senha <sup>*</sup></label>
+			<div class="controls">
+		  		<input type="password" id="password" placeholder="Senha com no mínimo 4 dígitos" name="password" value=<%= password %>>
+		  		<span class="help-inline"></span>
+			</div>
+  		</div>  	
+  		<div style="display:none;" id="password-confirmation-control-group" class="control-group">
+			<label class="control-label" for="passwordConfirmation">Confirme sua senha <sup>*</sup></label>
+			<div class="controls">
+		  		<input type="password" id="passwordConfirmation" placeholder="Confirme sua senha" name="passwordConfirmation">
+		  		<span class="help-inline"></span>
+			</div>
+  		</div>
+  		<div class="control-group">
+			<label class="control-label" for="userType">Tipo do usuário <sup>*</sup></label>
+			<div class="controls">				  
+			  <select  id="userType" name="userType" value="<%= userType %>">
+                    <option name="Cliente"
+                    <%= userType == 1?'selected':'' %>>Cliente</option>
+                    <option name="Administrador"
+                    <%= userType == 2?'selected':'' %>>Administrador</option>                        
+                </select>
+			  <span class="help-inline"></span>
+			</div>				
+	  	</div>		  	
+		<div class="control-group">
+			<div class="controls">															
+				<button id="user-save" class="btn btn-primary save">Salvar</button>
+				<button id="user-delete" class="btn delete">Excluir Usuário</button>
+			</div>
+		</div>		
+	</form>
 </div>
