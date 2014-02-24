@@ -5,10 +5,57 @@ window.MovieListView = Backbone.View.extend({
         this.render();
     },
 
-    render: function () {
+    render: function () {        
+        var movies = this.model.models;
+
         $(this.el).html(this.template());
+        var self = this;
+        movies.forEach(function(movie){                       
+            $('#listView', self.el).append(new MovieListItemView({model: movie}).el);
+            $('#blockView .thumbnails', self.el).append(new MovieListBlockItemView({model: movie}).el);
+        });
         return this;
+    }
+});
+
+
+window.MovieListItemView = Backbone.View.extend({
+
+    //tagName: "li",
+
+    className: "row",
+
+    initialize: function () {
+        console.log('Initializing Movie List Item View');    
+        this.model.bind("change", this.render, this);
+        this.model.bind("destroy", this.close, this);
+        this.render();
     },
+
+    render: function () {
+        $(this.el).html(this.template(this.model.toJSON())+"<hr class='soft'/>");
+        return this;
+    }
+});
+
+
+window.MovieListBlockItemView = Backbone.View.extend({
+
+    tagName: "li",
+
+    className: "span3",
+
+    initialize: function () {
+        console.log('Initializing Movie List Block Item View');    
+        this.model.bind("change", this.render, this);
+        this.model.bind("destroy", this.close, this);
+        this.render();
+    },
+
+    render: function () {
+        $(this.el).html(this.template(this.model.toJSON()));        
+        return this;
+    }
 });
 
 window.MovieListAdminView = Backbone.View.extend({

@@ -1,5 +1,9 @@
 window.ContactView = Backbone.View.extend({
 
+	events: {
+        "click #send-message": "sendMessage"        
+    },
+
     initialize: function () {
         console.log('Initializing Contact View');    
         this.render();
@@ -9,4 +13,8 @@ window.ContactView = Backbone.View.extend({
         $(this.el).html(this.template());        
         return this;
     },
+
+    sendMessage: function(){
+        alert("E-mail enviando com suceso!");
+    }
 });

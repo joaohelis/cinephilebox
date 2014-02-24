@@ -142,7 +142,7 @@ window.utils = {
                         birthplace: "Estados Unidos",    
                         releaseYear: 2012,
                         sinopse: "Matt Kowalski (George Clooney) é um astronauta experiente que está em missão de conserto ao telescópio Hubble juntamente com a doutora Ryan Stone (Sandra Bullock). Ambos são surpreendidos por uma chuva de destroços decorrente da destruição de um satélite por um míssil russo, que faz com que sejam jogados no espaço sideral. Sem qualquer apoio da base terrestre da NASA, eles precisam encontrar um meio de sobreviver em meio a um ambiente completamente inóspito para a vida humana",
-                        stockQuantity: 10,
+                        stockQuantity: 0,
                         coverPicture: "../img/coverPictures/1.jpg"
                     },
                     {

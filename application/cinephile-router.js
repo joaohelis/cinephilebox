@@ -79,9 +79,10 @@ var AppRouter = Backbone.Router.extend({
         movieListAdmin.tableMount();        
     },
 
-    movieList: function(){        
+    movieList: function() {
+        //var p = page ? parseInt(page, 10) : 1;        
         $('#carouselBlk').html("");
-        $("#content").html(new MovieListView().el);
+        $("#content").html(new MovieListView({model: movieList, page: 1}).el);        
     },
 
     home: function(){        
@@ -174,12 +175,12 @@ var categoryList = new CategoryCollection()
 var userList = new UserCollection()
 
 var appUser = new User();
-appUser.set({ isLogged: true });
+appUser.set({ isLogged: false });
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',
                     'HeaderAdminView', 'CategoryFormView', 'CategoryListView', 'UserView',
-                    'CategoryItemListView'], function() {
+                    'CategoryItemListView', 'MovieListItemView', 'MovieListBlockItemView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
