@@ -12,14 +12,21 @@ window.LoginView = Backbone.View.extend({
 
     events: {
         "change" : "change",
-        "click #btn-login" : "makeLogin"
+        "click #btn-login" : "makeLogin"        
     },
 
     change: function (event) {
         common_functions.change(event, this.model);
     },
 
-    makeLogin: function(){
+    onkeypress: function (event){
+        alert("entrei aquu");
+        if (event.keyCode == 13) {
+            makeLogin(event);
+        }        
+    },
+
+    makeLogin: function(event){        
         var self = this.model.attributes;
         var result = userList.where({'email': self.email, 'password': self.password });
         if (result.length !== 0){
@@ -28,6 +35,5 @@ window.LoginView = Backbone.View.extend({
         }else{
             utils.showAlert('Falhou!', 'E-mail ou senha incorretos!', 'alert');
         } 
-    }
-  
+    }      
 });

@@ -272,5 +272,41 @@ window.utils = {
             return (c=='x' ? r : (r&0x7|0x8)).toString(16);
         });
         return uuid;
+    },
+
+    sendEmail: function(email, callback){        
+        $.ajax({
+          type: 'POST',
+          url: 'https://mandrillapp.com/api/1.0/messages/send.json',
+          data: {
+            'key': 'nkTNNZNRpODZPgLFsIoyyw',
+            'message': {
+              'from_email': email.attributes.from,
+              'to': [
+                  {
+                    'email': email.attributes.to,
+                    //'name': 'RECIPIENT NAME (OPTIONAL)',
+                    'type': 'to'
+                  }
+                  /*{
+                    'email': 'RECIPIENT_NO_2@EMAIL.HERE',
+                    'name': 'ANOTHER RECIPIENT NAME (OPTIONAL)',
+                    'type': 'to'
+                  }*/
+                ],
+              'autotext': 'true',
+              'subject': email.attributes.subject,
+              'html': email.attributes.html
+            }
+          },
+          success: function(data) {
+            callback("E-mail enviado com sucesso!");
+          },
+          error: function(data){
+            callback("Falha ao enviar o e-mail.");
+          }
+        }).done(function(response) {
+           //callback(response); // if you're into that sorta thing
+        });        
     }
 };

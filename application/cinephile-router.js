@@ -4,8 +4,7 @@ String.prototype.startsWith = function(str){
 
 var AppRouter = Backbone.Router.extend({
         
-    routes: {
-        //'^([^\/]*)/.*$'    : "defaultRoute",
+    routes: {        
         ""                 : "home",
         "movies/list"      : "movieList",
         "contact"          : "contact",
@@ -30,11 +29,10 @@ var AppRouter = Backbone.Router.extend({
         utils.moviesPopulate(movieList);
         utils.categorysPopulate(categoryList);        
         if(appUser.attributes.isLogged){
-            this.configAdminDash();
+            this.configAdminDash();            
         }else{
             this.configLanding();
-        }
-        //this.defaultRoute();
+        }        
     },  
 
     configLanding: function(){
@@ -50,18 +48,6 @@ var AppRouter = Backbone.Router.extend({
         utils.startsWithMethodConfigure();
         this.headerAdmin();        
         this.sidebarAdmin();
-    },
-
-    defaultRoute: function(){
-        var currentRoute = new String(Backbone.history.valueOf().fragment).toString();        
-        if(currentRoute.startsWith("admin")){
-            alert("Entrei aqui");
-            this.sidebarAdmin();
-            this.headerAdmin();
-        }else{            
-            this.sidebar();
-            this.header();
-        }        
     },
 
     header: function(){
@@ -96,11 +82,11 @@ var AppRouter = Backbone.Router.extend({
     movieList: function() {
         //var p = page ? parseInt(page, 10) : 1;        
         $('#carouselBlk').html("");
-        $("#content").html(new MovieListView({model: movieList, page: 1}).el);        
+        $("#content").html(new MovieListView({model: movieList, page: 1}).render().el);        
     },
 
     home: function(){
-        this.configLanding();        
+        this.configLanding();
         $('#carouselBlk').html(new HomeView().el);
     },
 
@@ -137,7 +123,8 @@ var AppRouter = Backbone.Router.extend({
 
     contact: function(){
         $('#carouselBlk').html("");
-        $("#content").html(new ContactView().el);
+        var email = new Email({to:'cinephilebox@gmail.com'});
+        $("#content").html(new ContactView({model: email}).el);
     },
 
     addCategory: function(){

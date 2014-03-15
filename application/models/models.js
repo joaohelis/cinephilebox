@@ -45,7 +45,11 @@ window.Movie = Backbone.Model.extend({
 
 window.MovieCollection = Backbone.Collection.extend({    
     model: Movie,
-    localStorage: new Backbone.LocalStorage("MovieCollection")    
+    localStorage: new Backbone.LocalStorage("MovieCollection"),
+
+    findByCategory: function(category){
+        
+    }
 });
 
 window.Category = Backbone.Model.extend({ 
@@ -119,4 +123,14 @@ window.User = Backbone.Model.extend({
 window.UserCollection = Backbone.Collection.extend({    
     localStorage: new Backbone.LocalStorage("UserCollection"),
     model: User
+});
+
+
+window.Email = Backbone.Model.extend({     
+    defaults: {        
+        from: '',
+        to: '',        
+        subject: '',
+        html: ''
+    }    
 });

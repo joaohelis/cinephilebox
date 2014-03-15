@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="utf-8">
     <title>Cinephile Box</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-	<!--Less styles -->
+	<meta charset="utf-8">
+    <!--Less styles -->
    <!-- Other Less css file //different less files has different color scheam
 	<link rel="stylesheet/less" type="text/css" href="themes/less/simplex.less">
 	<link rel="stylesheet/less" type="text/css" href="themes/less/classified.less">
@@ -26,6 +26,8 @@
 	<link href="lib/theme/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="lib/app_resources/css/table.css" rel="stylesheet" type="text/css">
     <link href="lib/app_resources/css/app.css" rel="stylesheet" type="text/css">
+    <!-- form validations-->
+    <link href="lib/app_resources/css/cmxform.css" rel="stylesheet" type="text/css">
 	<!-- Google-code-prettify -->	
 	<link href="lib/theme/js/google-code-prettify/prettify.css" rel="stylesheet"/>
 	<!-- fav and touch icons -->
@@ -34,7 +36,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="lib/theme/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="lib/theme/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="lib/theme/images/ico/apple-touch-icon-57-precomposed.png">
-	<style type="text/css" id="enject"></style>
+	<style type="text/css" id="enject"></style>    
   </head>
 <body>
 	<div id="header"></div>
@@ -61,7 +63,10 @@
     <script src="lib/underscore-min.js"></script>
     <script src="lib/backbone-min.js"></script>
     <script src="lib/backbone.localStorage-min.js"></script>    
-    <script src="lib/datatables/jquery.dataTables.js"></script>    
+    <script src="lib/datatables/jquery.dataTables.js"></script>
+    <script src="lib/jquery.bootpag.min.js"></script>
+    <!--<script src="lib/additional-methods.min.js"></script>-->
+    <script src="lib/jquery.validate.min.js"></script>
 
     <script src="application/utils.js"></script>
     <script src="application/common_functions.js"></script>
@@ -75,6 +80,7 @@
     <script src="application/views/user_list.js"></script>
     <script src="application/views/login.js"></script>    
     <script src="application/views/forget_pass.js"></script>
+    <!--<script src="application/views/pagination.js"></script>-->
     <script src="application/views/movie_form.js"></script>
     <script src="application/views/sidebar.js"></script>
     <script src="application/views/contact.js"></script>

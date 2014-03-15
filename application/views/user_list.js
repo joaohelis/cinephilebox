@@ -38,15 +38,20 @@ window.UserListView = Backbone.View.extend({
             "aaData": aaData,
             "aoColumns": aoColumns,
             "oLanguage": {
+                "sSearch": "Buscar:",
+                "sInfoFiltered": " - A busca encontrou _TOTAL_ usuário(s)",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sEmptyTable": "Nenhum usário cadastrado!",
+                "sInfoEmpty": "Nenhum registro para mostrar",
+                "sZeroRecords": "Nenhum registro para mostrar",
+                "sInfo": "Mostrando (_START_ a _END_) de _TOTAL_ entradas",
                 "oPaginate": {
                     "sPrevious": "Anterior",
-                    "sNext": "Próximo",
-                    "sEmptyTable": "Nenhum usário cadastrado!",
+                    "sNext": "Próximo",                    
                     "sFirst": "Primeira página",
-                    "sLast": "Última página",
-                    "sSearch": "Buscar:"
+                    "sLast": "Última página"
                 }
-            }              
+            } 
         });
     },
 
