@@ -10,7 +10,7 @@ window.SidebarView = Backbone.View.extend({
         $(this.el).html(this.template());
         var categories = this.model;        
         categories.forEach(function(category){
-            $("#sideManu", self.el).append('<li><a>'+category.attributes.name+'</a></li>');
+            $("#sideManu", self.el).append('<li><a>'+category.attributes.name.toUpperCase()+'</a></li>');
         });        
         return this;
     }

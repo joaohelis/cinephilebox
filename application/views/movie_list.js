@@ -4,9 +4,9 @@ window.MovieListView = Backbone.View.extend({
         "click .tab": "tabPaneToggleClass"
     },
 
-    initialize: function () {                
-        console.log('Initializing Movie List View');        
-        //this.render();          
+    initialize: function (){
+        console.log('Initializing Movie List View');
+        //this.render();
     },
 
     tabPaneToggleClass: function(event){
@@ -14,12 +14,11 @@ window.MovieListView = Backbone.View.extend({
             $('.btn-tab').toggleClass('btn-primary');
     },
 
-    render: function () {            
-        //alert("entrei aqui");
-        $(this.el).html(this.template()); 
-        $(this.el).append('<div id="page-selection" class="pagination pagination-centered"></div>');        
+    render: function (){
+        $(this.el).html(this.template(this.model.toJSON()));
+        $(this.el).append('<div id="page-selection" class="pagination pagination-centered"></div>');
         var self = this;        
-        var moviePerPage = 6;
+        var moviePerPage = 9;
         var totalPages = this.model.models.length/moviePerPage + ((this.model.models.length % moviePerPage == 0)?0:1);
         self.movieListGenerate(1, moviePerPage);        
         $('#page-selection', this.el).bootpag({
