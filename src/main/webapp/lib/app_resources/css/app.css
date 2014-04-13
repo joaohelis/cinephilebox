@@ -1,0 +1,47 @@
+#sidebar{
+    margin-bottom: 20%
+}
+
+div.fileinputs {
+	position: relative;
+}
+
+div.fakefile {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+
+input.file {
+	position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+}
+
+.yellow-light{
+    color: #FAFAD2;
+}
+
+.khaki{
+    color: #F0E68C;
+}
+
+.khaki:hover{
+    color: #F0E68C;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.image-movie-iten-list{
+    height:200px; 
+    width:200px;
+}
+
+.image-movie-iten-block-list{
+    height:150px; 
+    width:150px;
+}

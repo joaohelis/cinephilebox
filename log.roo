@@ -1,0 +1,97 @@
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-11 19:29:27
+hint
+project --topLevelPackage br.ufpb.dsc.cinephile
+hint
+jpa setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY 
+hint
+hint
+entity jpa --class ~.domain.Category --testAutomatically 
+field string --fieldName name --notNull --sizeMin 2
+json all 
+web mvc json setup
+web mvc json all 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-12 15:47:13
+json add --class ~.domain.Category --rootName categories
+json all 
+web mvc json all 
+web mvc setup
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-12 19:04:49
+jpa setup --database MYSQL --provider HIBERNATE --userName dsc --password 20131 --hostName localhost --databaseName cinephile
+entity jpa --class ~.domain.Movie --testAutomatically 
+field string --fieldName title --notNull --sizeMin 2
+field reference --type ~.domain.Category --fieldName category --notNull 
+field string --fieldName birthplace --notNull --sizeMin 4
+field number --type java.lang.Integer --fieldName releaseYear --notNull 
+field string --fieldName sinopse --notNull --sizeMin 2
+field number --type java.lang.Integer --fieldName stockQuantity --notNull 
+field string --fieldName coverPicture --notNull 
+entity jpa --class ~.domain.Client --testAutomatically 
+field string --fieldName name --notNull --sizeMin 3
+field string --fieldName email --notNull
+field string --fieldName password --notNull --sizeMin 4
+field string --fieldName userType --notNull 
+json all 
+web mvc json all 
+entity jpa --class ~.domain.User --permitReservedWords 
+json all 
+// [failed] web mvc json all
+json add 
+json all
+web mvc controller --class ~.domain.User
+// [failed] web mvc json all
+web mvc controller --class ~.domain.User
+entity jpa --class ~.domain.User --testAutomatically --permitReservedWords 
+field string --fieldName name --notNull --sizeMin 3
+field string --fieldName email --notNull 
+field string --fieldName password --notNull 
+field string --fieldName userType --notNull 
+json add
+json all
+// [failed] web mvc json all 
+// [failed] web mvc json all --package ~.controller
+// [failed] web mvc json all
+// [failed] web mvc json all
+hint
+help
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-12 19:51:36
+web mvc json all 
+json all 
+web mvc json all 
+web mvc json all --package ~.controller
+web mvc json all --package ~.controller
+json all 
+web mvc json all --package ~.controller
+web mvc json all
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-12 20:00:05
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-12 20:00:24
+json all 
+web mvc json all
+web mvc json all
+web mvc json all --package ~.cotroller
+web mvc json all --package ~.controller
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-12 20:04:38
+web mvc json all --package ~.controller
+hint
+hint topics
+hint general
+hint web mvc
+web mvc json all --package ~.controller
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-12 20:08:01
+web mvc json all --package ~.controller
+web mvc json all --package ~.controller
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-12 21:23:06
+focus --class ~.domain.Movie
+hint
+// [failed] field string --fieldName category --notNull 
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-12 22:25:13
+focus --class ~.domain.Movie
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-13 08:51:14
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-13 09:56:11
+focus --class ~.domain.Movie
+field reference --type ~.domain.Category --fieldName category2 --fetch --notNull 
+// [failed] field reference --type ~.domain.Category --fieldName category --notNull --fetch 
+focus --class ~.domain.Category
+field set --type ~.domain.Movie --fieldName movies --mappedBy category --cardinality ONE_TO_MANY
+focus --class ~.domain.Movie
+// [failed] field reference --fieldName category --type ~.domain.Category
+field reference --fieldName category --type ~.domain.Category

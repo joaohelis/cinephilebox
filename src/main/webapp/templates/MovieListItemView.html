@@ -1,0 +1,28 @@
+<div class="span2">
+	<img class="image-movie-iten-list" src="<%= coverPicture %>"/>
+</div>
+<div class="span4">
+	<% 
+        if (stockQuantity > 0){
+            print("<h3>Disponível</h3>");
+        }else{          
+            print("<h3>Indisponível</h3>");
+        }         
+    %>
+	<hr class="soft"/>
+	<h5><%= title %></h5>
+	<p align="justify">					
+		<%= sinopse %>			
+	</p>					
+	<a class="btn btn-small pull-right">Ver detalhes</a>
+	<br class="clr"/>
+</div>
+<div class="span3 alignR">
+<form class="form-horizontal qtyFrm">	
+	<!--<h3> R$140.00</h3>-->
+	<a class="btn btn-large btn-primary"> Adicionar para <i class=" icon-shopping-cart"></i></a>	
+
+  	<a class="btn btn-large"><i class="icon-zoom-in"></i></a>		
+</form>
+</div>
+<br class="clr"/>

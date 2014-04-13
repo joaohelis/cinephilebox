@@ -1,0 +1,4 @@
+2014-04-13 10:34:33,692 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table movie drop foreign key FK_pgna8wvsntig99r2erf9ubkw7
+2014-04-13 10:34:33,692 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport - Table 'cinephile.movie' doesn't exist
+2014-04-13 10:34:34,112 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport - HHH000389: Unsuccessful: alter table movie add index FK_pgna8wvsntig99r2erf9ubkw7 (category), add constraint FK_pgna8wvsntig99r2erf9ubkw7 foreign key (category) references category (id)
+2014-04-13 10:34:34,113 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport - Can't create table 'cinephile.#sql-413_1a7' (errno: 150)

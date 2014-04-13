@@ -1,0 +1,17 @@
+<aspectj>
+<aspects>
+<aspect name="br.ufpb.dsc.cinephile.domain.MovieIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.UserDataOnDemand_Roo_Configurable"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.CategoryIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.UserIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.UserDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.CategoryDataOnDemand_Roo_Configurable"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.MovieDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.CategoryDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.MovieIntegrationTest_Roo_Configurable"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.CategoryIntegrationTest_Roo_Configurable"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.UserIntegrationTest_Roo_Configurable"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.MovieDataOnDemand_Roo_Configurable"/>
+</aspects>
+</aspectj>
+

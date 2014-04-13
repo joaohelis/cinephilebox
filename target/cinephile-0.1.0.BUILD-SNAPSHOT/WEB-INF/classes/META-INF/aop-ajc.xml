@@ -1,0 +1,26 @@
+<aspectj>
+<aspects>
+<aspect name="br.ufpb.dsc.cinephile.domain.Category_Roo_Configurable"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Movie_Roo_Configurable"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.User_Roo_Jpa_ActiveRecord"/>
+<aspect name="br.ufpb.dsc.cinephile.controller.MovieController_Roo_Controller_Json"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Movie_Roo_ToString"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.User_Roo_JavaBean"/>
+<aspect name="br.ufpb.dsc.cinephile.controller.CategoryController_Roo_Controller_Json"/>
+<aspect name="br.ufpb.dsc.cinephile.controller.UserController_Roo_Controller_Json"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Movie_Roo_Json"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Category_Roo_JavaBean"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.User_Roo_Json"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Movie_Roo_Jpa_ActiveRecord"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.User_Roo_ToString"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Movie_Roo_JavaBean"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.User_Roo_Configurable"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Category_Roo_ToString"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Category_Roo_Jpa_Entity"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Movie_Roo_Jpa_Entity"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Category_Roo_Json"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.Category_Roo_Jpa_ActiveRecord"/>
+<aspect name="br.ufpb.dsc.cinephile.domain.User_Roo_Jpa_Entity"/>
+</aspects>
+</aspectj>
+
