@@ -3,6 +3,7 @@
 
 package br.ufpb.dsc.cinephile.domain;
 
+import br.ufpb.dsc.cinephile.domain.Category;
 import br.ufpb.dsc.cinephile.domain.Movie;
 
 privileged aspect Movie_Roo_JavaBean {
@@ -55,11 +56,11 @@ privileged aspect Movie_Roo_JavaBean {
         this.coverPicture = coverPicture;
     }
     
-    public Integer Movie.getCategory() {
+    public Category Movie.getCategory() {
         return this.category;
     }
     
-    public void Movie.setCategory(Integer category) {
+    public void Movie.setCategory(Category category) {
         this.category = category;
     }
     

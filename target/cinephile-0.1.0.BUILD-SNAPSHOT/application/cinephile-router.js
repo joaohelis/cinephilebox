@@ -25,9 +25,9 @@ var AppRouter = Backbone.Router.extend({
 
     initialize: function () {                        
         $('#footerSection').html(new FooterView().el);
-        utils.usersPopulate(userList);
-        utils.moviesPopulate(movieList);
-        utils.categoriesPopulate(categoryList);        
+        //utils.usersPopulate(userList);
+        //utils.moviesPopulate(movieList);
+        //utils.categoriesPopulate(categoryList);        
         if(appUser.attributes.isLogged){
             this.configAdminDash();            
         }else{
@@ -51,7 +51,10 @@ var AppRouter = Backbone.Router.extend({
     },
 
     header: function(){
-        $('#header').html(new HeaderView({model:categoryList}).el);
+        var categoryList = new CategoryCollection();
+        categoryList.fetch().complete(function(){
+            $('#header').html(new HeaderView({model:categoryList}).el);
+        });
     },
 
     headerAdmin: function(){
@@ -93,6 +96,9 @@ var AppRouter = Backbone.Router.extend({
     home: function(){
         this.configLanding();
         $('#carouselBlk').html(new HomeView().el);
+        $('#myCarousel').carousel({
+            interval: 4000
+        });
     },
 
     homeAdmin: function(){
@@ -190,7 +196,7 @@ var categoryList = new CategoryCollection()
 var userList = new UserCollection()
 
 var appUser = new User();
-appUser.set({ isLogged: false });
+appUser.set({ isLogged: true });
 
 utils.loadTemplate(['HomeView', 'HeaderView', 'FooterView', 'MovieListView', 'ForgetPassView', 
                     'LoginView', 'MovieView', 'SidebarView', 'ContactView', 'SidebarAdminView',

@@ -70,15 +70,12 @@ window.UserListView = Backbone.View.extend({
     userDelete: function(user) {    
     	var self = this;    
         if(confirm("Tem certeza que quer excluir o usuário '"+user.attributes.name.toUpperCase()+"'?")){
-            user.destroy({
-                success:function () {                	
-                    alert('Usuário excluído com sucesso!');
-                    var anSelected = self.fnGetSelected(self.oTable);
-			        if (anSelected.length !== 0) {
-			            self.oTable.fnDeleteRow(anSelected[0]);
-			        }                    
-                }
-            })
+            user.destroy();
+            alert('Usuário excluído com sucesso!');
+                var anSelected = self.fnGetSelected(self.oTable);
+                if (anSelected.length !== 0) {
+                    self.oTable.fnDeleteRow(anSelected[0]);
+            }
         }        
         return false;
     }

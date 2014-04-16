@@ -3,6 +3,7 @@
 
 package br.ufpb.dsc.cinephile.domain;
 
+import br.ufpb.dsc.cinephile.domain.CategoryDataOnDemand;
 import br.ufpb.dsc.cinephile.domain.Movie;
 import br.ufpb.dsc.cinephile.domain.MovieDataOnDemand;
 import java.security.SecureRandom;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect MovieDataOnDemand_Roo_DataOnDemand {
@@ -22,10 +24,12 @@ privileged aspect MovieDataOnDemand_Roo_DataOnDemand {
     
     private List<Movie> MovieDataOnDemand.data;
     
+    @Autowired
+    CategoryDataOnDemand MovieDataOnDemand.categoryDataOnDemand;
+    
     public Movie MovieDataOnDemand.getNewTransientMovie(int index) {
         Movie obj = new Movie();
         setBirthplace(obj, index);
-        setCategory(obj, index);
         setCoverPicture(obj, index);
         setReleaseYear(obj, index);
         setSinopse(obj, index);
@@ -37,11 +41,6 @@ privileged aspect MovieDataOnDemand_Roo_DataOnDemand {
     public void MovieDataOnDemand.setBirthplace(Movie obj, int index) {
         String birthplace = "birthplace_" + index;
         obj.setBirthplace(birthplace);
-    }
-    
-    public void MovieDataOnDemand.setCategory(Movie obj, int index) {
-        Integer category = new Integer(index);
-        obj.setCategory(category);
     }
     
     public void MovieDataOnDemand.setCoverPicture(Movie obj, int index) {

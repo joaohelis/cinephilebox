@@ -10,7 +10,7 @@ import org.springframework.roo.addon.json.RooJson;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-@RooJson
+@RooJson(deepSerialize = true)
 public class Movie {
 
     /**
@@ -47,6 +47,6 @@ public class Movie {
 
     /**
      */
-    //@ManyToOne
-    private Integer category;
+    @ManyToOne
+    private Category category;
 }

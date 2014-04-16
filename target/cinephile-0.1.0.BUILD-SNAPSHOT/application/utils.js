@@ -250,6 +250,19 @@ window.utils = {
         });
     },
 
+    populateAll: function(){
+        var self = this;
+        categoryList.fetch({success: function(){
+            self.categoriesPopulate(categoryList);
+        }});
+        movieList.fetch({success: function(){
+            self.moviesPopulate(movieList);
+        }});
+        userList.fetch({success: function(){
+            self.usersPopulate(userList);
+        }});                                
+    },
+
     createSession:function(model){
         appUser.set({
             isLogged: true,

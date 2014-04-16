@@ -4,8 +4,6 @@
 package br.ufpb.dsc.cinephile.domain;
 
 import br.ufpb.dsc.cinephile.domain.Category;
-import br.ufpb.dsc.cinephile.domain.Movie;
-import java.util.Set;
 
 privileged aspect Category_Roo_JavaBean {
     
@@ -15,14 +13,6 @@ privileged aspect Category_Roo_JavaBean {
     
     public void Category.setName(String name) {
         this.name = name;
-    }
-    
-    public Set<Movie> Category.getMovies() {
-        return this.movies;
-    }
-    
-    public void Category.setMovies(Set<Movie> movies) {
-        this.movies = movies;
     }
     
 }

@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-@RooJson
+@RooJson(deepSerialize = true)
 public class Category {
 
     /**

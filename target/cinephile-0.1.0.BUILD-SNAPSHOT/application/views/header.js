@@ -12,7 +12,7 @@ window.HeaderView = Backbone.View.extend({
     render: function () {
         var self = this;        
         $(this.el).html(this.template());
-        var categories = this.model;        
+        var categories = this.model;              
         categories.forEach(function(category){
             $("#categories-select", self.el).append('<option>'+category.attributes.name.toUpperCase()+'</option>');
         });              

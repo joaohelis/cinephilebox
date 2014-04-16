@@ -10,7 +10,7 @@ import javax.persistence.Column;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-@RooJson
+@RooJson(deepSerialize = true)
 public class User {
 
     /**

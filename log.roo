@@ -95,3 +95,6 @@ field set --type ~.domain.Movie --fieldName movies --mappedBy category --cardina
 focus --class ~.domain.Movie
 // [failed] field reference --fieldName category --type ~.domain.Category
 field reference --fieldName category --type ~.domain.Category
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-04-14 09:33:31
+json all --deepSerialize
+web mvc json all --package ~.controller

@@ -6,15 +6,19 @@ window.MovieView = Backbone.View.extend({
     },
 
     render: function () {
-        $(this.el).html(this.template(this.model.toJSON()));
-        var category_list = '<select  id="category" name="category" value="<%= category %>">';
-        categoryList.each(function(category){
-            category_list += "<option name='"+category.id+"' value='"+category.id+"' <%= category == 1?'selected':' %>"+category.attributes.name+"</option>"
-        });
-        category_list += '</select>';        
-        $("#category_list", this.el).html(category_list);
-        $('#category option[name="'+this.model.attributes.category+'"]', this.$el).attr({selected : "selected" });
-        return this;
+        var self = this;
+        $(this.el).html(this.template(this.model.toJSON()));        
+        var categoryList = new CategoryCollection();
+        categoryList.fetch().complete(function(){
+            var category_list = '<select  id="category" name="category" value="<%= category %>">';
+            categoryList.each(function(category){
+                category_list += "<option name='"+category.id+"' value='"+category.id+"' <%= category == 1?'selected':' %>"+category.attributes.name+"</option>"
+            });
+            category_list += '</select>';        
+            $("#category_list", self.el).html(category_list);
+            $('#category option[name="'+self.model.attributes.category+'"]', self.$el).attr({selected : "selected" });
+            return self;
+        });                
     },
 
     events: {

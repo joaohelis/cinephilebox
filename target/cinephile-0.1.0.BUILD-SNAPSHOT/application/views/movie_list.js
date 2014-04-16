@@ -46,9 +46,7 @@ window.MovieListView = Backbone.View.extend({
 });
 
 
-window.MovieListItemView = Backbone.View.extend({
-
-    //tagName: "li",
+window.MovieListItemView = Backbone.View.extend({    
 
     className: "row",
 
@@ -57,11 +55,17 @@ window.MovieListItemView = Backbone.View.extend({
         this.model.bind("change", this.render, this);
         this.model.bind("destroy", this.close, this);
         this.render();
-    },
+    },    
 
     render: function () {
-        $(this.el).html(this.template(this.model.toJSON())+"<hr class='soft'/>");
-        return this;
+        var self = this;        
+        var category = new Category({id: self.model.get('category')});
+        category.fetch().complete(function(){            
+            var jsonModel = self.model.toJSON();
+            jsonModel.category = category.attributes.name;            
+            $(self.el).html(self.template(jsonModel)+"<hr class='soft'/>");
+            return this;
+        });        
     }
 });
 
@@ -73,15 +77,21 @@ window.MovieListBlockItemView = Backbone.View.extend({
     className: "span3",
 
     initialize: function () {
-        //console.log('Initializing Movie List Block Item View');    
+        //console.log('Initializing Movie List Block Item View');
         this.model.bind("change", this.render, this);
         this.model.bind("destroy", this.close, this);
         this.render();
     },
 
     render: function () {
-        $(this.el).html(this.template(this.model.toJSON()));        
-        return this;
+        var self = this;        
+        var category = new Category({id: self.model.get('category')});
+        category.fetch().complete(function(){            
+            var jsonModel = self.model.toJSON();
+            jsonModel.category = category.attributes.name;            
+            $(self.el).html(self.template(jsonModel));
+            return this;
+        });
     }
 });
 
@@ -102,46 +112,52 @@ window.MovieListAdminView = Backbone.View.extend({
         return this;
     },
 
-    tableMount: function(){    	
+    tableMount: function(){
+        var self = this;        	        
     	var aaData = [];
         var movies = this.model;
-        movies.forEach(function(movie){
-            var movie = movie.toJSON();            
-            var category = new Category({id:movie.category})
-            category.fetch();
-            aaData.push(['<p class="span3">'+movie.title+'</p>',                
-            			category.attributes.name,
-            			movie.stockQuantity, 
-            			'<a href="#admin/movies/edit/'+movie.id+'" class="btn btn-small btn-primary" title="Editar"><i class="btn-icon-only icon-edit"></i></a>\
-            			 <a id="movie-delete" movie-id="'+movie.id+'" class="btn btn-small" title="Remover"><i class="btn-icon-only icon-remove"></i></a>'                                                                                                  
-            			])
-        });
-        var aoColumns = []                
-        aoColumns.push({"sTitle": "Título"}); 
-        aoColumns.push({"sTitle": "Categoria", "sClass": "center"}); 
-        aoColumns.push({"sTitle": "Quant.Estoque", "sClass": "center"}); 
-        aoColumns.push({"sTitle": "Ações", "sClass": "center"}); 
+        var categoryList = new CategoryCollection();
+        categoryList.fetch().complete(function(){
+            movies.each(function(movie){
+                var movie = movie.toJSON();                
+            
+                var category = categoryList.get(movie.category);                
+                
+                aaData.push(['<p class="span3">'+movie.title+'</p>',
+                    category.attributes.name,
+                    movie.stockQuantity, 
+                    '<a href="#admin/movies/edit/'+movie.id+'" class="btn btn-small btn-primary" title="Editar"><i class="btn-icon-only icon-edit"></i></a>\
+                     <a id="movie-delete" movie-id="'+movie.id+'" class="btn btn-small" title="Remover"><i class="btn-icon-only icon-remove"></i></a>'                                                                                                  
+                    ]);
+            });
 
-        
-        this.oTable = $('#movie-list-admin').dataTable({            
-            "aaData": aaData,
-            "aoColumns": aoColumns,
-            "oLanguage": {
-                "sSearch": "Buscar:",
-                "sInfoFiltered": " - A busca encontrou _TOTAL_ filme(s)",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sEmptyTable": "Nenhum filme cadastrado!",
-                "sInfoEmpty": "Nenhum registro para mostrar",
-                "sZeroRecords": "Nenhum registro para mostrar",
-                "sInfo": "Mostrando (_START_ a _END_) de _TOTAL_ entradas",
-                "oPaginate": {
-                    "sPrevious": "Anterior",
-                    "sNext": "Próximo",                    
-                    "sFirst": "Primeira página",
-                    "sLast": "Última página"
-                }
-            }           
-        });
+            var aoColumns = []                
+
+            aoColumns.push({"sTitle": "Título"}); 
+            aoColumns.push({"sTitle": "Categoria", "sClass": "center"}); 
+            aoColumns.push({"sTitle": "Quant.Estoque", "sClass": "center"}); 
+            aoColumns.push({"sTitle": "Ações", "sClass": "center"});
+
+            self.oTable = $('#movie-list-admin').dataTable({            
+                "aaData": aaData,
+                "aoColumns": aoColumns,
+                "oLanguage": {
+                    "sSearch": "Buscar:",
+                    "sInfoFiltered": " - A busca encontrou _TOTAL_ filme(s)",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sEmptyTable": "Nenhum filme cadastrado!",
+                    "sInfoEmpty": "Nenhum registro para mostrar",
+                    "sZeroRecords": "Nenhum registro para mostrar",
+                    "sInfo": "Mostrando (_START_ a _END_) de _TOTAL_ entradas",
+                    "oPaginate": {
+                        "sPrevious": "Anterior",
+                        "sNext": "Próximo",                    
+                        "sFirst": "Primeira página",
+                        "sLast": "Última página"
+                    }
+                }           
+            });                
+        });                
     },
 
     beforeMovieDelete: function(events){
@@ -156,18 +172,15 @@ window.MovieListAdminView = Backbone.View.extend({
     	return oTableLocal.$('tr.row_selected');
 	},
 
-    movieDelete: function(movie) {    
-    	var self = this;    
+    movieDelete: function(movie) {          
+    	var self = this;        
         if(confirm("Tem certeza que quer excluir o filme?")){
-            movie.destroy({
-                success:function () {                	
-                    alert('Filme excluído com sucesso!');
-                    var anSelected = self.fnGetSelected(self.oTable);
-			        if (anSelected.length !== 0) {
-			            self.oTable.fnDeleteRow(anSelected[0]);
-			        }                    
-                }
-            })
+            movie.destroy();
+            var anSelected = self.fnGetSelected(self.oTable);                    
+            alert('Filme excluído com sucesso!');            
+            if (anSelected.length !== 0) {
+                self.oTable.fnDeleteRow(anSelected[0]);
+            }
         }        
         return false;
     }

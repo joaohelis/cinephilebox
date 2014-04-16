@@ -47,7 +47,11 @@ window.Movie = Backbone.Model.extend({
 
 window.MovieCollection = Backbone.Collection.extend({    
     url: 'movies',
-    model: Movie    
+    model: Movie,
+
+    findByCategory: function(category){
+        
+    }
 });
 
 window.Category = Backbone.Model.extend({
