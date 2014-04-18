@@ -285,6 +285,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.18</version>
         </dependency>
+        <!-- dependency for handle json-->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+            <version>1.9.12</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

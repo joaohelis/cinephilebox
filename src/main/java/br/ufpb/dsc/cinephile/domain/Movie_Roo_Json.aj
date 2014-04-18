@@ -22,11 +22,6 @@ privileged aspect Movie_Roo_Json {
         .include(fields).exclude("*.class").deepSerialize(this);
     }
     
-    public static Movie Movie.fromJsonToMovie(String json) {
-        return new JSONDeserializer<Movie>()
-        .use(null, Movie.class).deserialize(json);
-    }
-    
     public static String Movie.toJsonArray(Collection<Movie> collection) {
         return new JSONSerializer()
         .exclude("*.class").deepSerialize(collection);
