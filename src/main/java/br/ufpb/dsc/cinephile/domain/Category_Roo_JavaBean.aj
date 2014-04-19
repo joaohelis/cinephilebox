@@ -14,5 +14,18 @@ privileged aspect Category_Roo_JavaBean {
     public void Category.setName(String name) {
         this.name = name;
     }
+
+    public void Category.addMovie(Movie movie){
+      this.movies.add(movie);
+    }
+
+    public Movie Category.getMovieByTitle(String title){
+      for (Movie m: this.movies){
+        if(m.title == title){
+          return m;
+        }
+      }
+      return null;
+    }
     
 }
